@@ -20,7 +20,7 @@
 </head>
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
-        <h2><s:property value="title" /></h2>        
+        <h2><s:property value="titleList" /></h2>        
     <div align="center">
         <h2>Please login</h2>
         <s:property value="getText('label.welcome')"/> 
