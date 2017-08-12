@@ -9,16 +9,16 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import domaine.MovieDAO;
-import model.Movie;
+import domaine.MovieTheatreDAO;
+import model.MovieTheatre;
 
 
-public class MovieService  /*implements Closeable*/ {
-		private MovieDAO movieDAO;
+public class MovieTheatreService  /*implements Closeable*/ {
+		private MovieTheatreDAO movieTheatreDAO;
 		
-		public MovieService() {
+		public MovieTheatreService() {
 			try {
-				movieDAO = new MovieDAO();
+				movieTheatreDAO = new MovieTheatreDAO();
 			} catch (NamingException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
@@ -28,9 +28,9 @@ public class MovieService  /*implements Closeable*/ {
 
 
 		
-		public  Movie getMovies(int id)  {
-			Movie movie=movieDAO.getMovies(id);
-			return movie;
+		public  ArrayList<MovieTheatre> getAllMovieTheatres()  {
+			ArrayList<MovieTheatre> ListMovieTheatre=movieTheatreDAO.getAllMovieTheatres();
+			return ListMovieTheatre;
 		}
 
 
@@ -39,7 +39,7 @@ public class MovieService  /*implements Closeable*/ {
 		
 //		@Override
 //		public void close() {
-//			if(movieDAO != null)movieDAO.close();
+//			if(movieTheatreDAO != null)movieTheatreDAO.close();
 //		}
 
 

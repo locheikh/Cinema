@@ -20,16 +20,19 @@
 </head>
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
-        <h2><s:property value="titleList" /></h2>        
-    <div align="center">
+        <h2>title:<s:property value="movie.title" /></h2>  
+        <h2>duration:<s:property value="movie.duration" /></h2>   
+        <h2><s:property value="movie.subtitles" /></h2>   
+        <h2><s:property value="movie.director" /></h2>
+         <h2><s:property value="movie.language" /></h2> 
+         <h2><s:property value="movie.mainActors" /></h2>   
+          <h2><s:property value="movie.minAge" /></h2> 
+          <h2><s:property value="movie.startingDate" /></h2>
+         <h2><s:property value="movie.idSessions" /></h2></h2>             
+    
+<%--     <div align="center">
         <h2>Please login</h2>
         <s:property value="getText('label.welcome')"/> 
-        
-      <%--  <s:form action="movie" method="post">
-            <s:textfield name="movieBean.title" label="title" />
-            <s:password name="movieBean.duration" label="duration" />
-            <s:submit value="Login"/>
-        </s:form> --%>
-    </div>
+    </div> --%>
 </body>
 </html>

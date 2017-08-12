@@ -14,29 +14,15 @@ import service.MovieService;
  
 public class MovieAction extends ActionSupport {
      
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Movie movieBean;
 	private String message;
 	public String title;
-	public  ArrayList<String> titleList=new  ArrayList<String>();
+	public  Movie movie=new  Movie();
 	MovieService movieService=new MovieService(); 
 	public String execute() {
-      
-    	
-        //System.out.println(titleList);
-    	 
-        //System.out.println("Title: " + movieBean.getTitle());
-        //System.out.println("Duration: " + movieBean.getDuration());
-        //System.out.println(titleList);
-        // add your login procedure here...
-		titleList=movieService.getMovies();
-		//System.out.println(movieService.getMovies());
-    	//message="test";
-        //message=titleList.get(0);
-        return SUCCESS;
+		movie=movieService.getMovies(4);        
+		return SUCCESS;
     }
  
     public Movie getmovieBean() {

@@ -6,13 +6,14 @@ public class Movie {
 	private int id;
 	private String title;
 	private String duration;
-	private List<String> language; 
-	private List<String> subtitles;
-    private List<Integer>mainActors;
+	private String language; 
+	private String subtitles;
+    private String mainActors;
     private int minAge;
+    private int idSessions;
     
-    public Movie(int id, String title, String duration, List<String> language, List<String> subtitles,
-			List<Integer> mainActors, int minAge) {
+    public Movie(int id, String title, String duration, String language, String subtitles,
+			String mainActors, int minAge,int idSessions) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -50,27 +51,27 @@ public class Movie {
 		this.duration = duration;
 	}
 
-	public List<String> getLanguage() {
+	public String getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(List<String> language) {
+	public void setLanguage(String language) {
 		this.language = language;
 	}
 
-	public List<String> getSubtitles() {
+	public String getSubtitles() {
 		return subtitles;
 	}
 
-	public void setSubtitles(List<String> subtitles) {
+	public void setSubtitles(String subtitles) {
 		this.subtitles = subtitles;
 	}
 
-	public List<Integer> getMainActors() {
+	public String getMainActors() {
 		return mainActors;
 	}
 
-	public void setMainActors(List<Integer> mainActors) {
+	public void setMainActors(String mainActors) {
 		this.mainActors = mainActors;
 	}
 
@@ -86,6 +87,14 @@ public class Movie {
 	public String toString() {
 		return "Movie [id=" + id + ", title=" + title + ", duration=" + duration + ", language=" + language
 				+ ", subtitles=" + subtitles + ", mainActors=" + mainActors + ", minAge=" + minAge + "]";
+	}
+
+	public int getIdSessions() {
+		return idSessions;
+	}
+
+	public void setIdSessions(int idSessions) {
+		this.idSessions = idSessions;
 	}
    
 }

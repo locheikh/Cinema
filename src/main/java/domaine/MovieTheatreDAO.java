@@ -13,21 +13,27 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import model.Movie;
+import model.MovieTheatre;
 
 
 
-public class MovieDAO {
+public class MovieTheatreDAO {
 
 	
 	private static final String ERROR = null;
 
-	public MovieDAO() throws NamingException, SQLException {
+	public MovieTheatreDAO() throws NamingException, SQLException {
 		super();
 	}
 	
-	public Movie getMovies(int id) {
-		  Movie	movie =new Movie();	
+	public ArrayList<MovieTheatre> getAllMovieTheatres() {
+		  MovieTheatre	movieTheatre =null;	
+		  ArrayList<MovieTheatre> ListMovieTheatre=new ArrayList<MovieTheatre>(); 
+		  int id; 
+		  String adress;
+		  String city;
+		  String name;
+		  String type;
 	      String ret ="edrrrrr";//ERROR;
 	        Connection conn = null;
 
@@ -35,18 +41,17 @@ public class MovieDAO {
 	           String URL = "jdbc:mysql://localhost:3306/cinema";
 	           Class.forName("com.mysql.jdbc.Driver");
 	           conn = DriverManager.getConnection(URL, "root", "root");
-	           String sql = "SELECT * FROM movie WHERE id="+id+"";
+	           String sql = "SELECT * FROM movieTheatre";
 	           PreparedStatement ps = conn.prepareStatement(sql);
 	           ResultSet rs = ps.executeQuery();
 	           while (rs.next()) {
-	        	   movie.setDuration(rs.getString("duration"));
-	        	   movie.setId(rs.getInt("id"));
-	        	   movie.setLanguage(rs.getString("language"));
-	        	   movie.setMainActors(rs.getString("mainActors"));
-	        	   movie.setMinAge(rs.getInt("minAge"));
-	        	   movie.setSubtitles(rs.getString("subtitles"));
-	        	   movie.setTitle(rs.getString("title"));
-	        	   movie.setIdSessions(rs.getInt("idSessions"));
+	        	   adress=rs.getString("adress");
+	        	   city=rs.getString("city");
+	        	   id=rs.getInt("id");
+	        	   name=rs.getString("name");
+	        	   type=rs.getString("type");
+	        	   movieTheatre =new MovieTheatre(id,name,adress,city,type);	
+	        	   ListMovieTheatre.add(movieTheatre);
 	           }
 	        } catch (Exception e) {
 	        	System.out.println("ERROR");
@@ -58,7 +63,8 @@ public class MovieDAO {
 	              }
 	           }
 	        } 
-	        return movie;
+         
+	        return ListMovieTheatre;
 	}
 }
 
