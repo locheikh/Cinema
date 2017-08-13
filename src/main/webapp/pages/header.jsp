@@ -13,6 +13,7 @@
 			<ul class="nav navbar-nav">
 					<li><a href="MovieAction"><s:property value="getText('label.movie')"/></a></li>
 					<li><a href="MovieTheatreAction"><s:property value="getText('label.movieTheatre')"/></a></li>
+					<li><a href="SessionAction">Session</a></li>
 					<li><a href="MovieAction"><span class="glyphicon glyphicon-log-in"></span></a></li>
 					<li><a href="MovieAction"><span class="glyphicon glyphicon-user"></span></a></li>
 					

@@ -6,6 +6,8 @@ public class MovieTheatre {
 	private String adress; 
 	private String city;
     private String type;
+    
+    //private String redirectURL;
 
 	public MovieTheatre() {
 		super();

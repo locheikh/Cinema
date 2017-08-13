@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>   
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
-<%-- <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
-<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%-- <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
  --%>
  <!-- Bootstrap -->
@@ -27,11 +27,11 @@
          <tr>
             <s:iterator value="#movieTheatre"> 
             
-             name:<s:property value="name"/> <br/>
-             adress:<s:property value="adress"/> <br/>
-             city:<s:property value="city"/> <br/>
+            <h2><s:property value="name"/>     <s:property value="id"/></h2> <br/>
+            <s:property value="adress"/> <br/>
+            <%--  city:<s:property value="city"/> <br/>
              type:<s:property value="type"/> <br/>
-             name:<s:property value="name"/> <br/>
+             name:<s:property value="name"/> <br/> --%>
            	</s:iterator>
          <tr>     
          <br/><hr><br/>                     

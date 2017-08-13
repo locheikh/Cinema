@@ -22,9 +22,15 @@
 	  </action>
 	  
 	   <action name="MovieTheatreAction" class="Action.MovieTheatreAction">
-			<result name="success">/pages/MovieTheatre.jsp<!-- HelloWorld.jsp --></result>
+			<result name="success">/pages/MovieTheatres.jsp</result>
+			<!-- <result name="success" type="redirectAction">MovieAction?id=${id}</result> -->
 			<result name="error">/pages/error.jsp</result>
 	  </action>
+	  
+	<action name="SessionAction" class="Action.SessionAction">
+			<result name="success">/pages/Session.jsp</result>
+			<result name="error">/pages/error.jsp</result>
+	  </action> 
 	  
 	
 	  

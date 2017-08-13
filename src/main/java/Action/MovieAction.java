@@ -19,9 +19,17 @@ public class MovieAction extends ActionSupport {
 	private String message;
 	public String title;
 	public  Movie movie=new  Movie();
+	public ArrayList<Movie>ListMovie=new ArrayList<Movie>(); 
 	MovieService movieService=new MovieService(); 
+	
 	public String execute() {
 		movie=movieService.getMovies(4);        
+		return SUCCESS;
+    }
+	
+	public String getAllMovie() {
+		ListMovie=movieService.getAllMovie(1);
+		movie=ListMovie.get(1);  
 		return SUCCESS;
     }
  

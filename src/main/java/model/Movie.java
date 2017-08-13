@@ -1,19 +1,25 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Movie {
 	private int id;
 	private String title;
-	private String duration;
+	private Date duration;
 	private String language; 
 	private String subtitles;
     private String mainActors;
     private int minAge;
-    private int idSessions;
+    private int idSession;
+    private String director; 
+    private Date startingDate; 
+    private Date endDate; 
+    private int refMovieTheatre; 
+  
     
-    public Movie(int id, String title, String duration, String language, String subtitles,
-			String mainActors, int minAge,int idSessions) {
+	public Movie(int id, String title, Date duration, String language, String subtitles, String mainActors, int minAge,
+			int idSession, String director, Date startingDate, Date endDate, int refMovieTheatre) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -22,9 +28,34 @@ public class Movie {
 		this.subtitles = subtitles;
 		this.mainActors = mainActors;
 		this.minAge = minAge;
+		this.idSession = idSession;
+		this.director = director;
+		this.startingDate = startingDate;
+		this.endDate = endDate;
+		this.refMovieTheatre = refMovieTheatre;
 	}
-    
-    public Movie() {	
+	
+	
+
+	public Movie(int id, String title, Date duration, String language, String subtitles, String mainActors, int minAge,
+			int idSession, String director, Date startingDate, Date endDate) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.duration = duration;
+		this.language = language;
+		this.subtitles = subtitles;
+		this.mainActors = mainActors;
+		this.minAge = minAge;
+		this.idSession = idSession;
+		this.director = director;
+		this.startingDate = startingDate;
+		this.endDate = endDate;
+	}
+
+
+
+	public Movie() {	
 	}
     
     public int getId() {
@@ -43,11 +74,11 @@ public class Movie {
 		this.title = title;
 	}
 
-	public String getDuration() {
+	public Date getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(Date duration) {
 		this.duration = duration;
 	}
 
@@ -83,18 +114,55 @@ public class Movie {
 		this.minAge = minAge;
 	}
 	
-	@Override
-	public String toString() {
-		return "Movie [id=" + id + ", title=" + title + ", duration=" + duration + ", language=" + language
-				+ ", subtitles=" + subtitles + ", mainActors=" + mainActors + ", minAge=" + minAge + "]";
-	}
-
 	public int getIdSessions() {
-		return idSessions;
+		return idSession;
 	}
 
-	public void setIdSessions(int idSessions) {
-		this.idSessions = idSessions;
+	public void setIdSessions(int idSession) {
+		this.idSession = idSession;
 	}
+	
+	 public String getDirector() {
+			return director;
+		}
+
+		public void setDirector(String director) {
+			this.director = director;
+		}
+
+		public Date getStartingDate() {
+			return startingDate;
+		}
+
+		public void setStartingDate(Date startingDate) {
+			this.startingDate = startingDate;
+		}
+
+		public Date getEndDate() {
+			return endDate;
+		}
+
+		public void setEndDate(Date endDate) {
+			this.endDate = endDate;
+		}
+
+		public int getRefMovieTheatre() {
+			return refMovieTheatre;
+		}
+
+		public void setRefMovieTheatre(int refMovieTheatre) {
+			this.refMovieTheatre = refMovieTheatre;
+		}
+
+		@Override
+		public String toString() {
+			return "Movie [id=" + id + ", title=" + title + ", duration=" + duration + ", language=" + language
+					+ ", subtitles=" + subtitles + ", mainActors=" + mainActors + ", minAge=" + minAge + ", idSession="
+					+ idSession + ", director=" + director + ", startingDate=" + startingDate + ", endDate=" + endDate
+					+ ", refMovieTheatre=" + refMovieTheatre + "]";
+		}
+		
+		
+
    
 }

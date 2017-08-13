@@ -35,6 +35,18 @@ public class MovieService  /*implements Closeable*/ {
 
 
 
+		public ArrayList<Movie> getAllMovie(int refMovieTheatre) {
+			// TODO Auto-generated method stub
+			ArrayList<Movie>ListMovie=movieDAO.getAllMovie(refMovieTheatre);
+			return ListMovie;
+		}
+
+
+
+	
+
+
+
 	
 		
 //		@Override
