@@ -23,19 +23,26 @@
   <jsp:include page="/pages/header.jsp"></jsp:include>
         
         <table class="table table-bordered table-hover table-inverse" style="width: auto;" align="center">
-        
+         
 			
-         <s:iterator value="movieTheatres" var="movieTheatre">
+         <s:iterator value="movies" var="movie">
          <tr>
-            <s:iterator value="#movieTheatre"> 
-            
-             <s:url action="Action/getAllMovie.action" var="urlTag" >
-           <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
+            <s:iterator value="#movie"> 
+         
+          <s:url action="Action/getMovie" var="urlTag" >
+           <s:param name="idMovie"><s:property value="id"/></s:param>
            </s:url>
-            <h2><a href="<s:property value="#urlTag" />" ><s:property value="name" /></a></h2>-<s:property value="adress" />
-			
-          <%--   <h2><s:property value="name"/>     <s:property value="id"/></h2> <br/>
-            <s:property value="adress"/> <br/> --%>
+            <h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2>
+            De <s:property value="director" />
+		<%--  <h2>title:<s:property value="title" /></h2>  
+        <h2>duration:<s:property value="duration" /></h2>   
+        <h2><s:property value="subtitles" /></h2>   
+        <h2><s:property value="director" /></h2>
+         <h2><s:property value="language" /></h2> 
+         <h2><s:property value="mainActors" /></h2>   
+          <h2><s:property value="minAge" /></h2> 
+          <h2><s:property value="startingDate" /></h2>
+         <h2><s:property value="idSessions" /></h2></h2>   --%>
             <%--  city:<s:property value="city"/> <br/>
              type:<s:property value="type"/> <br/>
              name:<s:property value="name"/> <br/> --%>
@@ -44,11 +51,15 @@
             <s:param name="message" value="georgedddddd"/>
             <s:submit value="Submit"/>
            </s:form> --%>
-        <%--    <s:form action="getAllMovie.action" method="post">
-            <s:submit name="refMovieTheatre" value="%{id}"  />
-        </s:form> --%>
+          <%--  <s:form action="getMovie.action" method="get">
+            <s:submit name="id" value="%{id}"/>
+           </s:form>
            
-          
+           <s:url action="Action/getMovie" var="urlTag" >
+           <s:param name="id"><s:property value="id" /></s:param>
+           </s:url>
+            <h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2>
+ --%>
      
           
            	</s:iterator>

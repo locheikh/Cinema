@@ -23,7 +23,8 @@ public class MovieTheatreAction extends ActionSupport {
 	public String title;
 	public  ArrayList<MovieTheatre> movieTheatres=new  ArrayList<MovieTheatre>();
 	MovieTheatreService movieTheatreService=new MovieTheatreService(); 
-	public String execute() {
+	
+	public String getAllMovieTheatres() {
 		movieTheatres=movieTheatreService.getAllMovieTheatres();
 		return SUCCESS;
     }

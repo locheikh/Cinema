@@ -11,12 +11,14 @@
 
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-					<li><a href="MovieAction"><s:property value="getText('label.movie')"/></a></li>
-					<li><a href="MovieTheatreAction"><s:property value="getText('label.movieTheatre')"/></a></li>
-					<li><a href="SessionAction">Session</a></li>
-					<li><a href="MovieAction"><span class="glyphicon glyphicon-log-in"></span></a></li>
-					<li><a href="MovieAction"><span class="glyphicon glyphicon-user"></span></a></li>
-					
+					<li><a href="getAllMovie"><s:property value="getText('label.movie')"/></a></li>
+					<%-- <li><a href="CinemaGetMovie"><s:property value="getText('label.movie')"/></a></li> --%>
+					<li><a href="getAllMovieTheatres"><s:property value="getText('label.movieTheatre')"/></a></li>
+					<li><a href="movieSessions">Session</a></li>
+					<li><a href="addMovie">addMovie</a></li>
+					<li><a href="login"><span class="glyphicon glyphicon-user"></span></a></li>
+					<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+
 			</ul>
 		</div>
 	</div>

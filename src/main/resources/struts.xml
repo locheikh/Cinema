@@ -14,39 +14,85 @@
         <action name="HelloWorld" class="example.HelloWorld">
 			<result name="success">/pages/HelloWorld.jsp</result>
 		</action>
-
 		
-	  <action name="MovieAction" class="Action.MovieAction">
+		<!-- <action name="getMovie" class="Action.MovieAction" method="getMovie" >
 			<result name="success">/pages/Movie.jsp</result>
-			<result name="error">/pages/error.jsp</result>
-	  </action>
+			<result name="error">/pages/error.jsp</result> 
+	  </action>  -->
 	  
-	   <action name="MovieTheatreAction" class="Action.MovieTheatreAction">
+	  
+       <action name="getMovie" class="Action.CinemaAction" method="getMovie" >
+			<result name="success">/pages/Movie.jsp</result>
+			<result name="error">/pages/error.jsp</result> 
+	  </action>
+   
+       
+       
+		
+	 <!--  <action name="getAllMovie" class="Action.MovieAction" method="getAllMovie" >
+			<result name="success">/pages/Movies.jsp</result>
+			<result name="error">/pages/error.jsp</result> 
+	  </action> -->
+	  
+	  
+	  <action name="getAllMovie" class="Action.CinemaAction" method="getAllMovie" >
+			<result name="error">/pages/error.jsp</result> 
+			<result name="success">/pages/Movies.jsp</result>
+	  </action>        
+	  
+	  
+	 <action name="addMovie" class="Action.CinemaAction" method="addMovie" >
+			<result name="error">/pages/error.jsp</result> 
+			<result name="success">/pages/Movies.jsp</result>
+			<!-- <result name="input">/pages/Movies.jsp</result>  -->
+	  </action>        
+	  
+	  
+	  
+	  
+	   <!-- <action name="getAllMovieTheatres" class="Action.MovieTheatreAction" method="getAllMovieTheatres">
 			<result name="success">/pages/MovieTheatres.jsp</result>
-			<!-- <result name="success" type="redirectAction">MovieAction?id=${id}</result> -->
+			 <result name="input">/pages/MovieTheatres.jsp</result> 
+			<result name="error">/pages/error.jsp</result>
+	  </action> -->
+	  
+	  <action name="getAllMovieTheatres" class="Action.CinemaAction" method="getAllMovieTheatres">
+			<result name="success">/pages/MovieTheatres.jsp</result>
+			 <result name="input">/pages/MovieTheatres.jsp</result> 
 			<result name="error">/pages/error.jsp</result>
 	  </action>
 	  
-	<action name="SessionAction" class="Action.SessionAction">
+	  
+	  
+	  
+	<!-- <action name="movieSessions" class="Action.SessionAction" method="movieSessions">
+			<result name="success">/pages/Session.jsp</result>
+			<result name="error">/pages/error.jsp</result>
+	  </action>  -->
+	  
+	  <action name="movieSessions" class="Action.CinemaAction" method="movieSessions">
 			<result name="success">/pages/Session.jsp</result>
 			<result name="error">/pages/error.jsp</result>
 	  </action> 
 	  
-	
-	  
- <!-- <action name="login" class="Action.AuthenticationAction"
+
+        <action name="login" class="Action.AuthenticationAction"
                 method="login">
-            <result name="success">/pages/Welcome.jsp</result>
-            <result name="input">/pages/Login.jsp</result>
+           <!-- <result name="success">/pages/Welcome.jsp</result>-->
+             <result name="input">/pages/Login.jsp</result> 
+            <result name="success" type="redirectAction">Action/getAllMovieTheatres</result>
         </action>
  
         <action name="logout" class="Action.AuthenticationAction"
                 method="logout">
-            <result name="success">/pages/Login.jsp</result>
-        </action>  -->
+            <!-- <result name="success">/pages/Login.jsp</result> -->
+            <result name="success" type="redirectAction">Action/getAllMovieTheatres</result>
+        </action> 
 	  
-
-
+	
+	
+	
+	
 	</package>
 	
 	

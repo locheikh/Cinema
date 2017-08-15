@@ -38,7 +38,7 @@ public class Movie {
 	
 
 	public Movie(int id, String title, Date duration, String language, String subtitles, String mainActors, int minAge,
-			int idSession, String director, Date startingDate, Date endDate) {
+			 String director, Date startingDate, Date endDate) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -47,7 +47,6 @@ public class Movie {
 		this.subtitles = subtitles;
 		this.mainActors = mainActors;
 		this.minAge = minAge;
-		this.idSession = idSession;
 		this.director = director;
 		this.startingDate = startingDate;
 		this.endDate = endDate;
@@ -118,11 +117,21 @@ public class Movie {
 		return idSession;
 	}
 
-	public void setIdSessions(int idSession) {
+
+	
+	 public int getIdSession() {
+		return idSession;
+	}
+
+
+
+	public void setIdSession(int idSession) {
 		this.idSession = idSession;
 	}
-	
-	 public String getDirector() {
+
+
+
+	public String getDirector() {
 			return director;
 		}
 
@@ -154,6 +163,8 @@ public class Movie {
 			this.refMovieTheatre = refMovieTheatre;
 		}
 
+
+
 		@Override
 		public String toString() {
 			return "Movie [id=" + id + ", title=" + title + ", duration=" + duration + ", language=" + language
@@ -161,6 +172,7 @@ public class Movie {
 					+ idSession + ", director=" + director + ", startingDate=" + startingDate + ", endDate=" + endDate
 					+ ", refMovieTheatre=" + refMovieTheatre + "]";
 		}
+
 		
 		
 
