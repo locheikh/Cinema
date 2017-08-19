@@ -20,14 +20,8 @@ public class MovieService  /*implements Closeable*/ {
 		private MovieDAO movieDAO;
 		private SessionDAO sessionDAO;
 		public MovieService() {
-			try {
-				movieDAO = new MovieDAO();
-				sessionDAO=new SessionDAO();
-			} catch (NamingException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			movieDAO = new MovieDAO();
+			sessionDAO=SessionDAO.getInstance();
 		}
 
 

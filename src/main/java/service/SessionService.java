@@ -18,13 +18,7 @@ public class SessionService  /*implements Closeable*/ {
 		private SessionDAO sessionDAO;
 		
 		public SessionService() {
-			try {
-				sessionDAO = new SessionDAO();
-			} catch (NamingException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+				sessionDAO = SessionDAO.getInstance();
 		}
 
 
