@@ -20,9 +20,45 @@
 </head>
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
-        <h2>title:<s:property value="movie" /></h2>  
-        <h2>duration:<s:property value="movie.duration" /></h2>   
-        <h2><s:property value="movie.subtitles" /></h2>   
+  
+        <h2>duration:<s:property value="movi.duration" /></h2>   
+        <h2><s:property value="movi.subtitles" /></h2>   
+       
+
+        
+        <table class="table table-bordered table-hover table-inverse" style="width: auto;" align="center">
+         <s:iterator value="movi.sessions" var="session">
+         <tr>
+            <s:iterator value="#session"> 
+            
+          <h2> <s:property value="jour"/> <s:property value="id"/></h2> <br/>
+            <s:property value="startingTime"/> <br/> 
+           <s:property value="refMovie"/> <br/> 
+             
+             
+             <s:url namespace="/Action" action="deleteSession" var="urlTag" >
+             <s:param name="idSession"><s:property value="id"/></s:param>
+              <s:hidden name="idMovie" value="%{idMovie}"/> 
+             </s:url>
+           
+            
+            <a href="<s:property value="#urlTag" />" ><span class="glyphicon glyphicon-remove"></span></a>
+                        
+        
+            <s:url namespace="/Action" action="sessionBeforeUpdate" var="urlTag2" >
+            <s:param name="idSession"><s:property value="id"/></s:param>
+            <s:hidden name="idMovie" value="%{idMovie}"/>   
+            </s:url>            
+            <a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-edit"></span></a>
+     
+
+           	</s:iterator>
+         <tr>     
+         <br/><hr><br/>                     
+         </s:iterator>
+       </table>
+       
+        
         <%-- <h2><s:property value="movie.director" /></h2>
          <h2><s:property value="movie.language" /></h2> 
          <h2><s:property value="movie.mainActors" /></h2>   

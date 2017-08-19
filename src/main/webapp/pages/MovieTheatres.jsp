@@ -21,6 +21,14 @@
 <body>
 
   <jsp:include page="/pages/header.jsp"></jsp:include>
+  
+   <s:url namespace="/Action" action=" datatable.action" var="urll" >
+
+           </s:url>
+            <h2><a href="<s:property value="urll" />" >datatable</a>
+		   
+         
+   
         
         <table class="table table-bordered table-hover table-inverse" style="width: auto;" align="center">
         
@@ -29,24 +37,21 @@
          <tr>
             <s:iterator value="#movieTheatre"> 
             
-             <s:url action="Action/getAllMovie.action" var="urlTag" >
+           <s:url namespace="/Action" action="getAllMovie.action" var="urlTag" >
            <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
            </s:url>
             <h2><a href="<s:property value="#urlTag" />" ><s:property value="name" /></a></h2>-<s:property value="adress" />
-			
-          <%--   <h2><s:property value="name"/>     <s:property value="id"/></h2> <br/>
-            <s:property value="adress"/> <br/> --%>
-            <%--  city:<s:property value="city"/> <br/>
-             type:<s:property value="type"/> <br/>
-             name:<s:property value="name"/> <br/> --%>
-           
-         <%--  <s:form action="getAllMovie" method="post">
-            <s:param name="message" value="georgedddddd"/>
-            <s:submit value="Submit"/>
-           </s:form> --%>
-        <%--    <s:form action="getAllMovie.action" method="post">
-            <s:submit name="refMovieTheatre" value="%{id}"  />
-        </s:form> --%>
+		   
+		   <s:url namespace="/Action" action="movieForm" var="urlTag2" >
+           <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
+           </s:url>
+			  &nbsp;&nbsp;&nbsp;
+		 	<s:if test="%{#movieTheatre.name=='Wepler'}">
+			  	<a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-plus">Add Movie</span></a>
+          	</s:if>   
+         
+         
+        
            
           
      

@@ -36,7 +36,7 @@ public class MovieAction extends ActionSupport {
 		return SUCCESS;
     }
 	public String getAllMovie() {
-		
+		System.out.println(movies);
 		movies=movieService.getAllMovie(refMovieTheatre);
 		//movie=movies.get(refMovieTheatre);  
 		return SUCCESS;

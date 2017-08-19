@@ -4,8 +4,7 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%-- <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
-<%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
- --%>
+<%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>--%>
  <!-- Bootstrap -->
 	    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,40 +28,35 @@
          <tr>
             <s:iterator value="#movie"> 
          
-          <s:url action="Action/getMovie" var="urlTag" >
-           <s:param name="idMovie"><s:property value="id"/></s:param>
-           </s:url>
-            <h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2>
-            De <s:property value="director" />
-		<%--  <h2>title:<s:property value="title" /></h2>  
-        <h2>duration:<s:property value="duration" /></h2>   
-        <h2><s:property value="subtitles" /></h2>   
-        <h2><s:property value="director" /></h2>
-         <h2><s:property value="language" /></h2> 
-         <h2><s:property value="mainActors" /></h2>   
-          <h2><s:property value="minAge" /></h2> 
-          <h2><s:property value="startingDate" /></h2>
-         <h2><s:property value="idSessions" /></h2></h2>   --%>
-            <%--  city:<s:property value="city"/> <br/>
-             type:<s:property value="type"/> <br/>
-             name:<s:property value="name"/> <br/> --%>
+          		<s:url action="Action/getMovie" var="urlTag" >
+           			<s:param name="idMovie"><s:property value="id"/></s:param>
+           		</s:url>
+            	
+            	<h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2>
+            	De <s:property value="director" />
            
-         <%--  <s:form action="getAllMovie" method="post">
-            <s:param name="message" value="georgedddddd"/>
-            <s:submit value="Submit"/>
-           </s:form> --%>
-          <%--  <s:form action="getMovie.action" method="get">
-            <s:submit name="id" value="%{id}"/>
-           </s:form>
+           		<s:url namespace="/Action" action="sessionsForm" var="urlTag2" >
+            		<s:param name="refMovie"><s:property value="id"/></s:param>
+           		</s:url>
            
-           <s:url action="Action/getMovie" var="urlTag" >
-           <s:param name="id"><s:property value="id" /></s:param>
-           </s:url>
-            <h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2>
- --%>
-     
-          
-           	</s:iterator>
+            	<a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-plus"></span></a>
+            
+            	<s:url namespace="/Action" action="deleteMovie" var="urlTag3" >
+            		<s:param name="idMovie"><s:property value="id"/></s:param>
+            		<s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/>
+           		</s:url>
+           
+            	<a href="<s:property value="#urlTag3" />" ><span class="glyphicon glyphicon-remove"></span></a>
+                        
+                       
+           	 	<s:url namespace="/Action" action="MovieBeforeUpdate" var="urlTag4" >
+            		<s:param name="idMovie"><s:property value="id"/></s:param>
+            		<s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/>
+           		</s:url>            
+                               
+          <a href="<s:property value="#urlTag4" />" ><span class="glyphicon glyphicon-edit"></span></a>
+           
+          </s:iterator>
          <tr>     
          <br/><hr><br/>                     
          </s:iterator>

@@ -15,6 +15,11 @@
 			<result name="success">/pages/HelloWorld.jsp</result>
 		</action>
 		
+		<action name="datatable" class="Action.CinemaAction" method="getAllMovie">
+			<result >/pages/datatable.jsp</result>
+		</action>
+		 
+		
 		<!-- <action name="getMovie" class="Action.MovieAction" method="getMovie" >
 			<result name="success">/pages/Movie.jsp</result>
 			<result name="error">/pages/error.jsp</result> 
@@ -43,10 +48,47 @@
 	  
 	 <action name="addMovie" class="Action.CinemaAction" method="addMovie" >
 			<result name="error">/pages/error.jsp</result> 
-			<result name="success">/pages/Movies.jsp</result>
-			<!-- <result name="input">/pages/Movies.jsp</result>  -->
-	  </action>        
+			<result name="success" type="redirectAction">              
+				<param name="actionName">getAllMovie</param>
+            	<param name="namespace">/Action</param>
+        		<param name="parse">true</param>
+        		<param name="refMovieTheatre">${refMovieTheatre}</param>
+
+			</result>
+	  </action>  
 	  
+	  <action name="updateMovie" class="Action.CinemaAction" method="updateMovie" >
+			<result name="error">/pages/error.jsp</result> 
+			<result name="success" type="redirectAction">              
+				<param name="actionName">getMovie</param>
+            	<param name="namespace">/Action</param>
+        		<param name="parse">true</param>
+        		<param name="idMovie">${idMovie}</param>
+			</result>
+	  </action> 
+	  
+	  
+	  <action name="MovieBeforeUpdate" class="Action.CinemaAction" method="getMovie" >
+			<result name="success">/pages/MovieUpdate.jsp</result>
+			<result name="error">/pages/error.jsp</result> 
+	  </action>
+	  
+	  <action name="deleteMovie" class="Action.CinemaAction" method="deleteMovie" >
+			<result name="error">/pages/error.jsp</result> 
+			<result name="success" type="redirectAction">              
+				<param name="actionName">getAllMovie</param>
+            	<param name="namespace">/Action</param>
+        		<param name="parse">true</param>
+        		<param name="refMovieTheatre">${refMovieTheatre}</param>
+			</result>
+	  </action>            
+	  
+	  
+	  <action name="movieForm" class="Action.CinemaAction">
+			<result name="error">/pages/error.jsp</result> 
+			<result>/pages/MovieForm.jsp</result>
+			<!-- <result name="input">/pages/Movies.jsp</result>  -->
+	  </action>   
 	  
 	  
 	  
@@ -58,7 +100,7 @@
 	  
 	  <action name="getAllMovieTheatres" class="Action.CinemaAction" method="getAllMovieTheatres">
 			<result name="success">/pages/MovieTheatres.jsp</result>
-			 <result name="input">/pages/MovieTheatres.jsp</result> 
+			<!--  <result name="input">/pages/MovieTheatres.jsp</result>  -->
 			<result name="error">/pages/error.jsp</result>
 	  </action>
 	  
@@ -75,6 +117,55 @@
 			<result name="error">/pages/error.jsp</result>
 	  </action> 
 	  
+	  
+	  <action name="addSessions" class="Action.CinemaAction" method="addSessions" >
+			<result name="error">/pages/error.jsp</result> 
+			<!-- <result name="success">/pages/Movie.jsp</result> -->
+			<result name="success" type="redirectAction">              
+				<param name="actionName">getMovie</param>
+            	<param name="namespace">/Action</param>
+        		<param name="parse">true</param>
+        		<param name="idMovie">${refMovie}</param>
+			</result>
+	  </action> 
+	  
+	  <action name="sessionsForm" class="Action.CinemaAction">
+			<result name="error">/pages/error.jsp</result> 
+			<result>/pages/SessionsForm.jsp</result>
+			<!-- <result name="input">/pages/Movies.jsp</result>  -->
+	  </action> 
+	  
+	  <action name="updateSession" class="Action.CinemaAction" method="updateSession" >
+			<result name="error">/pages/error.jsp</result> 
+			<result name="success" type="redirectAction">              
+				<param name="actionName">getMovie</param>
+            	<param name="namespace">/Action</param>
+        		<param name="parse">true</param>
+        		<param name="idMovie">${idMovie}</param>
+			</result>
+	  </action> 
+	  
+	    <action name="sessionBeforeUpdate" class="Action.CinemaAction" method="getSession" >
+			<result name="success">/pages/SessionUpdate.jsp</result>
+			<result name="error">/pages/error.jsp</result> 
+	  </action>
+	  
+	  <action name="deleteSession" class="Action.CinemaAction" method="deleteSession" >
+			<result name="error">/pages/error.jsp</result> 
+			<result name="success" type="redirectAction">              
+				<param name="actionName">getMovie</param>
+            	<param name="namespace">/Action</param>
+        		<param name="parse">true</param>
+        		<param name="idMovie">${refMovie}</param>
+			</result>
+	  </action> 	
+	  
+	
+	  
+	  
+	
+	  
+	  
 
         <action name="login" class="Action.AuthenticationAction"
                 method="login">
@@ -88,11 +179,6 @@
             <!-- <result name="success">/pages/Login.jsp</result> -->
             <result name="success" type="redirectAction">Action/getAllMovieTheatres</result>
         </action> 
-	  
-	
-	
-	
-	
 	</package>
 	
 	

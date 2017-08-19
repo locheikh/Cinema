@@ -18,30 +18,16 @@ public class SessionAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Session sessionBean;
-	private String message;
+
+	
 	public String title;
 	public  ArrayList<Session> sessions=new  ArrayList<Session>();
 	SessionService sessionService=new SessionService(); 
 	
-	public String execute() {
+	public String movieSessions() {
 		sessions=sessionService.getSessions(4);
 		return SUCCESS;
     }
  
-    public Session getsessionBean() {
-        return sessionBean;
-    }
- 
-    public void setsessionBean(Session sessionBean) {
-        this.sessionBean = sessionBean;
-    }
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }
