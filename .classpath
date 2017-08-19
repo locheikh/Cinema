@@ -19,5 +19,6 @@
 	<classpathentry kind="var" path="M2_REPO/commons-io/commons-io/2.0.1/commons-io-2.0.1.jar" sourcepath="M2_REPO/commons-io/commons-io/2.0.1/commons-io-2.0.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/loche/Desktop/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/loche/Desktop/PROJET JEE/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/struts2-dojo-plugin-2.3.15.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
