@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Session {
 	private int id; 
-	private String jour; 
-	private Date  startingTime ;
+	private Date jour; 
+	private Date startingTime ;
 	private int refMovie; 
    
 	 
-	public Session(int id, String jour, Date startingTime, int refMovie) {
+	public Session(int id, Date jour, Date startingTime, int refMovie) {
 		super();
 		this.id = id;
 		this.jour = jour;
@@ -29,10 +29,10 @@ public class Session {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getJour() {
+	public Date getJour() {
 		return jour;
 	}
-	public void setJour(String jour) {
+	public void setJour(Date jour) {
 		this.jour = jour;
 	}
 	public Date getStartingTime() {

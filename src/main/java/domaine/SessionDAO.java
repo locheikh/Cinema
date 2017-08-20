@@ -23,33 +23,31 @@ public class SessionDAO {
 
 	
 	private static final String ERROR = null;
-	private static SessionDAO instanceUnique;
-	private static Connection conn;
 
-	private SessionDAO() throws NamingException, SQLException, ClassNotFoundException {
+	public SessionDAO() throws NamingException, SQLException {
 		super();
-		 String URL = "jdbc:mysql://localhost:3306/cinema";
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(URL, "root", "root");
 	}
 	
 	public ArrayList<Session> getSessions(int id) {
 		  Session	session =null;	
 		  ArrayList<Session>ListSession=new ArrayList<Session>();
-		  String jour;
+		  Date jour;
 		  int idSession;
 		  int refMovie;
 		  Date startingTime;
 		  
 	      String ret ="edrrrrr";//ERROR;
+	        Connection conn = null;
 
 	        try {
-	          
+	           String URL = "jdbc:mysql://localhost:3306/cinema";
+	           Class.forName("com.mysql.jdbc.Driver");
+	           conn = DriverManager.getConnection(URL, "root", "root");
 	           String sql = "SELECT * FROM session WHERE refMovie="+id+"";
 	           PreparedStatement ps = conn.prepareStatement(sql);
 	           ResultSet rs = ps.executeQuery();
 	           while (rs.next()) { 
-	        	  jour=rs.getString("jour");        
+	        	  jour=rs.getTimestamp("jour");        
 	        	  idSession=rs.getInt("id");
 	        	  refMovie=rs.getInt("refMovie");;
 	        	  startingTime=rs.getTimestamp("startingTime");
@@ -70,18 +68,23 @@ public class SessionDAO {
 	        return ListSession;
 	}
 	
-	public String addSessions(int refMovie,String jour) {
+	public String addSessions(int refMovie,Date jour) {
 				      String ret = ERROR;
+				      Connection conn = null;
 				      int id=0;
 				      
 				      try {
+				    	  String URL = "jdbc:mysql://localhost:3306/cinema";
+				           Class.forName("com.mysql.jdbc.Driver");
+				           conn = DriverManager.getConnection(URL, "root", "root");
 				         String sql = "insert into session(refMovie,jour) values (?,?)";
 				         
 				         //sql+=" user = ? AND password = ?";
 				         PreparedStatement ps = conn.prepareStatement(sql);
 				         
 				         ps.setInt(1,refMovie);
-				         ps.setString(2,jour);
+				         java.sql.Date sqlDate = new java.sql.Date(jour.getTime());
+				         ps.setDate(2,sqlDate);
 				         System.out.println(ps);
 	
 				         
@@ -105,6 +108,10 @@ public class SessionDAO {
 						}//finally{
 //							//return id;
 //						}
+			           catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 				      System.out.println("addmoviefinb");
 				      return ret;
@@ -114,7 +121,11 @@ public class SessionDAO {
 		// TODO Auto-generated method stub
 		String sql = "DELETE FROM session WHERE id = ?";
         String ret = ERROR;
+         Connection conn = null;
          try {
+        	 String URL = "jdbc:mysql://localhost:3306/cinema";
+        	 Class.forName("com.mysql.jdbc.Driver");
+        	 conn = DriverManager.getConnection(URL, "root", "root");
         	 final PreparedStatement ps = conn.prepareStatement(sql);
         	 ps.setInt(1, session);
         	 ps.executeUpdate();		
@@ -122,21 +133,34 @@ public class SessionDAO {
          } catch (SQLException e) {
 		// TODO Auto-generated catch block
         	 e.printStackTrace();
+         } catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+        	 e.printStackTrace();
          }
 
    }
 
-	public void updateSession(int refMovie, String jour,int id) {
+	public void updateSession(int refMovie, Date jour,int id, Date startingTime) {
 // TODO Auto-generated method stub
-				String sql = "UPDATE session SET jour=? WHERE id="+id+"";
+				String sql = "UPDATE session SET jour=?,startingTime=? WHERE id="+id+"";
 		        String ret = ERROR;
+		         Connection conn = null;
 		         try {  
-		        	
+		        	 String URL = "jdbc:mysql://localhost:3306/cinema";
+		        	 Class.forName("com.mysql.jdbc.Driver");
+		        	 conn = DriverManager.getConnection(URL, "root", "root");
 		        	 final PreparedStatement ps = conn.prepareStatement(sql);
-		        	 ps.setString(1,jour);
+		        	 java.sql.Date sqlDate = new java.sql.Date(jour.getTime());
+			         ps.setDate(1,sqlDate);
+			         java.sql.Date sqlTime = new java.sql.Date(startingTime.getTime());
+			         ps.setDate(2,sqlTime);
+			         System.out.println(ps);
 		        	 ps.executeUpdate();		
 				
 		         } catch (SQLException e) {
+				// TODO Auto-generated catch block
+		        	 e.printStackTrace();
+		         } catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 		        	 e.printStackTrace();
 		         }
@@ -147,20 +171,24 @@ public class SessionDAO {
 	public Session getSession(int idSession) {
 		// TODO Auto-generated method stub
 		  Session	session =null;	
-		  String jour;
+		  Date jour;
 		  int refMovie;
 		  Date startingTime;
 		  
 	      String ret ="edrrrrr";//ERROR;
+	        Connection conn = null;
 
 	        try {
+	           String URL = "jdbc:mysql://localhost:3306/cinema";
+	           Class.forName("com.mysql.jdbc.Driver");
+	           conn = DriverManager.getConnection(URL, "root", "root");
 	           String sql = "SELECT * FROM session WHERE id="+idSession+"";
 	           PreparedStatement ps = conn.prepareStatement(sql);
 	           ResultSet rs = ps.executeQuery();
 	           while (rs.next()) { 
-	        	  jour=rs.getString("jour");        
+	        	  jour=rs.getTimestamp("jour");        
 	        	  //idSession=rs.getInt("id");
-	        	  refMovie=rs.getInt("refMovie");;
+	        	  refMovie=rs.getInt("refMovie");
 	        	  startingTime=rs.getTimestamp("startingTime");
 	        	  session =new Session(idSession,jour, startingTime,refMovie);
 	        	  //ListSession.add(session);
@@ -178,26 +206,5 @@ public class SessionDAO {
 	        return session;
 			
 	}
-
-	public static SessionDAO getInstance() {
-		synchronized (instanceUnique) {
-			if (instanceUnique == null) {
-				try {
-					instanceUnique = new SessionDAO();
-				} catch (ClassNotFoundException | NamingException | SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return instanceUnique;
-	}
    
 }
-
-	
-	
-	
-	
-	
-

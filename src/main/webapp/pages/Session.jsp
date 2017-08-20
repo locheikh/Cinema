@@ -30,10 +30,9 @@
           <h2> <s:property value="jour"/> <s:property value="id"/></h2> <br/>
             <s:property value="startingTime"/> <br/> 
             <s:property value="refMovie"/> <br/> 
-            
-            <%--  city:<s:property value="city"/> <br/>
-             type:<s:property value="type"/> <br/>
-             name:<s:property value="name"/> <br/> --%>
+            <sx:datetimepicker cssClass = "form-control" name="sess.startingTime" label="Format (EEE dd-MMM-yyyy)"
+displayFormat="EEE dd-MMM-yyyy" value="sess.startingTime" />
+
            	</s:iterator>
          <tr>     
          <br/><hr><br/>                     

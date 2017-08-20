@@ -40,7 +40,8 @@ public class CinemaAction extends ActionSupport {
        //  addSessions
 
 	private int refMovie;
-	private String jour=null;
+	private Date jour=null;
+	private Date startingTime=null;
 	
 	  //UpdateSession
 	private int idSession;       
@@ -108,7 +109,7 @@ public class CinemaAction extends ActionSupport {
 	public String updateSession() {
 		System.out.println(idMovie);
 		SessionService sessionService=new SessionService(); 
-		sessionService.updateSession(refMovie,jour,idSession);
+		sessionService.updateSession(refMovie,jour,idSession,startingTime);
 		return SUCCESS;
     }
 	
@@ -116,7 +117,7 @@ public class CinemaAction extends ActionSupport {
 		
 		SessionService sessionService=new SessionService(); 
 		sess=sessionService.getSession(idSession);
-	    
+	    refMovie=sess.getrefMovie();
 		return SUCCESS;
     }
 	
@@ -249,11 +250,11 @@ public class CinemaAction extends ActionSupport {
 		this.refMovie = refMovie;
 	}
 
-	public String getJour() {
+	public Date getJour() {
 		return jour;
 	}
 
-	public void setJour(String jour) {
+	public void setJour(Date jour) {
 		this.jour = jour;
 	}
 

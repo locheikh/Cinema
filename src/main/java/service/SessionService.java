@@ -18,7 +18,13 @@ public class SessionService  /*implements Closeable*/ {
 		private SessionDAO sessionDAO;
 		
 		public SessionService() {
-				sessionDAO = SessionDAO.getInstance();
+			try {
+				sessionDAO = new SessionDAO();
+			} catch (NamingException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 
@@ -28,7 +34,7 @@ public class SessionService  /*implements Closeable*/ {
 			return session;
 		}                 
 
-		public void addSessions(int refMovie,String jour) {
+		public void addSessions(int refMovie,Date jour) {
 			sessionDAO.addSessions(refMovie,jour);
 		}
 
@@ -41,9 +47,9 @@ public class SessionService  /*implements Closeable*/ {
 
 
 
-		public void updateSession(int refMovie, String jour,int id) {
+		public void updateSession(int refMovie, Date jour,int id, Date startingTime) {
 			// TODO Auto-generated method stub
-			 sessionDAO.updateSession(refMovie,jour,id);
+			 sessionDAO.updateSession(refMovie,jour,id,startingTime);
 		}
 
 

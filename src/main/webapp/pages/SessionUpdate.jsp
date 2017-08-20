@@ -22,15 +22,15 @@
 
      
  
-   <s:property value="idMovie"/>
+  <%--  <s:property value="refMovie"/> --%>
                   
 		<s:form  namespace="/Action" action="updateSession" method="post">
-       		<s:textfield  placeholder="%{sess.jour}" cssClass = "form-control"  name="jour" label="jour"/>
-       	<%-- 	<s:hidden name="refMovie" value="%{refMovie}"/> --%>
-       	    <sx:datetimepicker cssClass = "form-control" name="sess.startingTime" label="Format (EEE dd-MMM-yyyy)"
-displayFormat="EEE dd-MMM-yyyy" value="sess.startingTime" />
+       	    <sx:datetimepicker cssClass = "form-control" name="jour" label="Format (EEE dd-MMM-yyyy)"
+displayFormat="EEE dd-MMM-yyyy" value="sess.jour" />
+			<sx:datetimepicker value="sess.startingTime" cssClass = "form-control" type="time" label="Ship Time" name="startingTime" displayFormat="hh:mm:ss"></sx:datetimepicker> 
+
        		<s:hidden name="idSession" value="%{idSession}"/>
-            <s:hidden name="idMovie" value="sess.refMovie"/> 
+            <s:hidden name="idMovie" value="%{refMovie}"/> 
        		<s:submit label="Action/updateSession"/>
         </s:form>
 

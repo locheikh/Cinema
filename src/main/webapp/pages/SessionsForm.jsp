@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%-- <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %> --%>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -13,20 +14,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Struts2 MovieForm</title>
-
+<sx:head />
 </head>
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
 
-     
+      <s:property value="refMovie"/>
  
    <!--  <center> -->
 		<s:form  namespace="/Action" action="addSessions" method="post">
-       		<s:textfield  placeholder="jour" cssClass = "form-control"  name="jour" label="jour"/>
-       		<s:textfield  placeholder="autreJour"  name="jour" label="jour"/>
-       		<s:date name="startingTime" format="yyyy-MM-dd" />
+
+       	<sx:datetimepicker cssClass = "form-control" name="jour" label="Format (EEE dd-MMM-yyyy)"
+displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
+	<sx:datetimepicker cssClass = "form-control" type="time" label="Ship Time" name="startingTime" displayFormat="hh:mm:ss"></sx:datetimepicker> 
        		<s:hidden name="refMovie" value="%{refMovie}"/>
-       		<s:submit label="Action/addSessions"/>
+       		<s:submit  label="Action/addSessions"/>
         </s:form>
  <!--  </center> -->
     

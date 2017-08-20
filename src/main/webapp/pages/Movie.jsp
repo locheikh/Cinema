@@ -21,8 +21,9 @@
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
   
+<%--         <s:date name="movi.duration" format="dd/MM/yyyy" /> --%>
         <h2>duration:<s:property value="movi.duration" /></h2>   
-        <h2><s:property value="movi.subtitles" /></h2>   
+        <h2><s:property value="movi.subtitles" /></h2>    <br/> 
        
 
         
@@ -30,10 +31,12 @@
          <s:iterator value="movi.sessions" var="session">
          <tr>
             <s:iterator value="#session"> 
-            
-          <h2> <s:property value="jour"/> <s:property value="id"/></h2> <br/>
-            <s:property value="startingTime"/> <br/> 
-           <s:property value="refMovie"/> <br/> 
+
+          <%-- <h2> <s:property value="jour"/> </h2> <br/> --%>
+          <s:date name="jour" format="dd/MM/yyyy EEEE" /><br/>
+          <s:date name="startingTime" format="HH:mm"/> <br/>
+            <br/> 
+          <%--  <s:property value="refMovie"/> <br/>  --%>
              
              
              <s:url namespace="/Action" action="deleteSession" var="urlTag" >
