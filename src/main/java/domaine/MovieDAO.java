@@ -38,6 +38,7 @@ public class MovieDAO {
                Date startingDate; 
                Date endDate; 
                String subtitles;
+
              
 	        try {
 	        	String URL = "jdbc:mysql://localhost:3306/cinema";
@@ -59,9 +60,12 @@ public class MovieDAO {
                    director=rs.getString("director");
 	        	   startingDate=rs.getTimestamp("startingDate");
 	        	   endDate=rs.getTimestamp("endDate");
-                       movie=new Movie(id, title, duration,language,subtitles,mainActors,minAge,
-       			director,startingDate,endDate); 	        	  
-       	           movie.setDuration(duration);
+	        	   
+                   movie=new Movie(id, title, duration,language,subtitles,mainActors,minAge,
+       			director,startingDate,endDate,refMovieTheatre);
+                   
+                   
+       	           //movie.setDuration(duration);
 	        	   listMovie.add(movie);
 	        	   
 	           }
@@ -78,7 +82,7 @@ public class MovieDAO {
 	        return listMovie;
 	}
 	
-	public Movie getMovie(int  refMovieTheatre) {
+	public Movie getMovie(int  idMovie) {
 		 Movie	movie =null;	
 		ArrayList<Movie>listMovie =new ArrayList<Movie>() ;	
 	      String ret ="edrrrrr";//ERROR;
@@ -93,12 +97,13 @@ public class MovieDAO {
               Date startingDate; 
               Date endDate; 
               String subtitles;
+              int refMovieTheatre;
             
 	        try {
 	        	String URL = "jdbc:mysql://localhost:3306/cinema";
 		           Class.forName("com.mysql.jdbc.Driver");
 		           conn = DriverManager.getConnection(URL, "root", "root");
-		           String sql = "SELECT * FROM movie WHERE id="+refMovieTheatre+"";
+		           String sql = "SELECT * FROM movie WHERE id="+idMovie+"";
 		           PreparedStatement ps = conn.prepareStatement(sql);
 		           ResultSet rs = ps.executeQuery();
 	           while (rs.next()) {
@@ -113,9 +118,10 @@ public class MovieDAO {
                   director=rs.getString("director");
 	        	   startingDate=rs.getTimestamp("startingDate");
 	        	   endDate=rs.getTimestamp("endDate");
-                      movie=new Movie(id, title, duration,language,subtitles,mainActors,minAge,
-      			director,startingDate,endDate); 	        	  
-      	           movie.setDuration(duration);
+	        	   refMovieTheatre=rs.getInt("refMovieTheatre");
+                   movie=new Movie(id, title, duration,language,subtitles,mainActors,minAge,
+      			director,startingDate,endDate,refMovieTheatre); 	        	  
+      	           //movie.setDuration(duration);
 	        	   listMovie.add(movie);
 	        	   
 	           }
@@ -129,7 +135,6 @@ public class MovieDAO {
 	              }
 	           }
 	        } 
-
 	        return movie;
 	}
 	
@@ -149,15 +154,17 @@ Date startingDate, Date endDate, String subtitles,int refMovieTheatre) {
 	         //sql+=" user = ? AND password = ?";
 	         PreparedStatement ps = conn.prepareStatement(sql);
 	         
-	         
-	         ps.setTimestamp(2,(Timestamp) duration);
+	         Timestamp ts_now = new Timestamp(duration.getTime()); 
+	         ps.setTimestamp(2,ts_now );
 	         ps.setString(3, language);
 	         ps.setString(5, mainActors);
 	         ps.setInt(6,minAge);
 	         ps.setString(1,title);
 	         ps.setString(4,director);
-	         ps.setTimestamp(7,(Timestamp) startingDate);
-	         ps.setTimestamp(8,(Timestamp) endDate);
+	         java.sql.Date sqlstartingDate = new java.sql.Date(startingDate.getTime());
+	         ps.setDate(7,sqlstartingDate);
+	         java.sql.Date sqlendDate = new java.sql.Date(endDate.getTime());
+	         ps.setDate(8,sqlendDate);
 	         ps.setString(9,subtitles);
 	         ps.setInt(10,refMovieTheatre);
 

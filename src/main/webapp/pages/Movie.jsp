@@ -22,6 +22,7 @@
   <jsp:include page="/pages/header.jsp"></jsp:include>
   
 <%--         <s:date name="movi.duration" format="dd/MM/yyyy" /> --%>
+         <h2>title:<s:property value="movi.title" /></h2>   
         <h2>duration:<s:property value="movi.duration" /></h2>   
         <h2><s:property value="movi.subtitles" /></h2>    <br/> 
        
@@ -41,16 +42,16 @@
              
              <s:url namespace="/Action" action="deleteSession" var="urlTag" >
              <s:param name="idSession"><s:property value="id"/></s:param>
-              <s:hidden name="idMovie" value="%{idMovie}"/> 
+             <s:param name="idMovie" value="%{idMovie}"/> 
              </s:url>
            
             
             <a href="<s:property value="#urlTag" />" ><span class="glyphicon glyphicon-remove"></span></a>
-                        
-        
+               <%-- <s:property value="idMovie" />     --%>     
+        <s:property value="idMovie" />
             <s:url namespace="/Action" action="sessionBeforeUpdate" var="urlTag2" >
             <s:param name="idSession"><s:property value="id"/></s:param>
-            <s:hidden name="idMovie" value="%{idMovie}"/>   
+            <s:hidden name="idMovie" value="%{refMovie}"/>   
             </s:url>            
             <a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-edit"></span></a>
      

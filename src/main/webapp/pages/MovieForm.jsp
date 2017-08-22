@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
 <%-- <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %> --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,26 +13,14 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<sx:head />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Struts2 MovieForm</title>
 
 </head>
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
-       <%--  <h2>title:<s:property value="movie" /></h2>  
-        <h2>duration:<s:property value="movie.duration" /></h2>   
-        <h2><s:property value="movie.subtitles" /></h2>    --%>
-        <%-- <h2><s:property value="movie.director" /></h2>
-         <h2><s:property value="movie.language" /></h2> 
-         <h2><s:property value="movie.mainActors" /></h2>   
-          <h2><s:property value="movie.minAge" /></h2> 
-          <h2><s:property value="movie.startingDate" /></h2>
-         <h2><s:property value="movie.idSessions" /></h2></h2>     --%>         
-    
-<%--     <div align="center">
-        <h2>Please login</h2>
-        <s:property value="getText('label.welcome')"/> 
-    </div> --%>
+
      
 
     <center>
@@ -42,6 +31,14 @@
        		<s:textfield placeholder="Main actors"  cssClass = "form-control" name="mainActors" label="main Actors" />
        		<s:textfield placeholder="Director" cssClass = "form-control" name="director" label="Director" />  
        		<s:textfield placeholder="10" cssClass = "form-control" name="director" label="min Age" /> 
+       		<sx:datetimepicker cssClass = "form-control" name="startingDate" label="startingDate"
+                     displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
+            <sx:datetimepicker cssClass = "form-control" name="endDate" label="endDate"
+                     displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
+	        <sx:datetimepicker cssClass = "form-control" type="time" label="duration" name="duration" displayFormat="hh:mm:ss"></sx:datetimepicker> 
+       		<s:hidden name="idMovie" value="%{refMovie}"/> 
+       		
+       		
        		 <s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/> 
        		<s:submit label="Action/addMovie"/>
     </s:form>

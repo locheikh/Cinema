@@ -34,6 +34,7 @@ public class MovieTheatreDAO {
 		  String city;
 		  String name;
 		  String type;
+		  String refProprio;
 	      String ret ="edrrrrr";//ERROR;
 	        Connection conn = null;
 
@@ -50,7 +51,8 @@ public class MovieTheatreDAO {
 	        	   id=rs.getInt("id");
 	        	   name=rs.getString("name");
 	        	   type=rs.getString("type");
-	        	   movieTheatre =new MovieTheatre(id,name,adress,city,type);	
+	        	   refProprio=rs.getString("refProprio");
+	        	   movieTheatre =new MovieTheatre(id,name,adress,city,type,refProprio);	
 	        	   ListMovieTheatre.add(movieTheatre);
 	           }
 	        } catch (Exception e) {

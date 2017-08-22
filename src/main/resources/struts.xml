@@ -156,8 +156,8 @@
 				<param name="actionName">getMovie</param>
             	<param name="namespace">/Action</param>
         		<param name="parse">true</param>
-        		<param name="refMovie">${refMovie}</param>
-        		<param name="idMovie">${refMovie}</param>
+   <!--      		<param name="refMovie">${refMovie}</param> -->
+        		<param name="idMovie">${idMovie}</param>
 			</result>
 	  </action> 	
 	  

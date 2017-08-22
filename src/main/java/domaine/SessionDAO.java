@@ -36,7 +36,7 @@ public class SessionDAO {
 		  int refMovie;
 		  Date startingTime;
 		  
-	      String ret ="edrrrrr";//ERROR;
+	      String ret ="error";//ERROR;
 	        Connection conn = null;
 
 	        try {
@@ -49,9 +49,9 @@ public class SessionDAO {
 	           while (rs.next()) { 
 	        	  jour=rs.getTimestamp("jour");        
 	        	  idSession=rs.getInt("id");
-	        	  refMovie=rs.getInt("refMovie");;
+	        	  refMovie=rs.getInt("refMovie");
 	        	  startingTime=rs.getTimestamp("startingTime");
-	        	  java.sql.Date startingTimeDate = rs.getDate("startingTime");
+	        	  //java.sql.Date startingTimeDate = rs.getDate("startingTime");
 	        	  session =new Session(idSession,jour, startingTime,refMovie);
 	        	  ListSession.add(session);
 	           }
@@ -68,7 +68,7 @@ public class SessionDAO {
 	        return ListSession;
 	}
 	
-	public String addSessions(int refMovie,Date jour) {
+	public String addSessions(int refMovie,Date jour, Date startingTime) {
 				      String ret = ERROR;
 				      Connection conn = null;
 				      int id=0;
@@ -77,7 +77,7 @@ public class SessionDAO {
 				    	  String URL = "jdbc:mysql://localhost:3306/cinema";
 				           Class.forName("com.mysql.jdbc.Driver");
 				           conn = DriverManager.getConnection(URL, "root", "root");
-				         String sql = "insert into session(refMovie,jour) values (?,?)";
+				         String sql = "insert into session(refMovie,jour,startingTime) values (?,?,?)";
 				         
 				         //sql+=" user = ? AND password = ?";
 				         PreparedStatement ps = conn.prepareStatement(sql);
@@ -85,8 +85,8 @@ public class SessionDAO {
 				         ps.setInt(1,refMovie);
 				         java.sql.Date sqlDate = new java.sql.Date(jour.getTime());
 				         ps.setDate(2,sqlDate);
-				         System.out.println(ps);
-	
+				         Timestamp ts_now = new Timestamp(startingTime.getTime()); 
+				         ps.setTimestamp(3,ts_now );
 				         
 				         int affectedRows = ps.executeUpdate();
 
@@ -113,7 +113,6 @@ public class SessionDAO {
 							e.printStackTrace();
 						}
 
-				      System.out.println("addmoviefinb");
 				      return ret;
 				   }
 
@@ -142,7 +141,7 @@ public class SessionDAO {
 
 	public void updateSession(int refMovie, Date jour,int id, Date startingTime) {
 // TODO Auto-generated method stub
-				String sql = "UPDATE session SET jour=?,startingTime=? WHERE id="+id+"";
+				String sql = "UPDATE session SET `jour`=?,`startingTime`=? WHERE `id`="+id+"";
 		        String ret = ERROR;
 		         Connection conn = null;
 		         try {  
@@ -152,11 +151,9 @@ public class SessionDAO {
 		        	 final PreparedStatement ps = conn.prepareStatement(sql);
 		        	 java.sql.Date sqlDate = new java.sql.Date(jour.getTime());
 			         ps.setDate(1,sqlDate);
-			         java.sql.Date sqlTime = new java.sql.Date(startingTime.getTime());
-			         ps.setDate(2,sqlTime);
-			         System.out.println(ps);
-		        	 ps.executeUpdate();		
-				
+			         Timestamp ts_now = new Timestamp(startingTime.getTime()); 
+			         ps.setTimestamp(2,ts_now );
+			         ps.executeUpdate();	
 		         } catch (SQLException e) {
 				// TODO Auto-generated catch block
 		        	 e.printStackTrace();

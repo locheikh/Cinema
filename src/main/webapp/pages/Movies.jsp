@@ -43,9 +43,12 @@
             
             	<s:url namespace="/Action" action="deleteMovie" var="urlTag3" >
             		<s:param name="idMovie"><s:property value="id"/></s:param>
-            		<s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/>
+            		<s:param name="refMovieTheatre" value="{#parameters['refMovieTheatre']}"/>
            		</s:url>
            
+           <%-- <s:property value="%{#parameters['refMovieTheatre']}"/> --%>
+            	
+            	
             	<a href="<s:property value="#urlTag3" />" ><span class="glyphicon glyphicon-remove"></span></a>
                         
                        

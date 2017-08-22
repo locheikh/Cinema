@@ -19,15 +19,16 @@
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
 
-      <s:property value="refMovie"/>
+<%--       <s:property value="refMovie"/> --%>
  
    <!--  <center> -->
 		<s:form  namespace="/Action" action="addSessions" method="post">
 
        	<sx:datetimepicker cssClass = "form-control" name="jour" label="Format (EEE dd-MMM-yyyy)"
 displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
-	<sx:datetimepicker cssClass = "form-control" type="time" label="Ship Time" name="startingTime" displayFormat="hh:mm:ss"></sx:datetimepicker> 
-       		<s:hidden name="refMovie" value="%{refMovie}"/>
+	<sx:datetimepicker value="" cssClass = "form-control" type="time" label="Ship Time" name="startingTime" displayFormat="hh:mm:ss"></sx:datetimepicker> 
+       		<s:hidden name="idMovie" value="%{refMovie}"/> 
+       		
        		<s:submit  label="Action/addSessions"/>
         </s:form>
  <!--  </center> -->

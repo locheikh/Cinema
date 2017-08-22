@@ -3,6 +3,9 @@ package Action;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.Movie;
@@ -27,14 +30,14 @@ public class CinemaAction extends ActionSupport {
 
 	
         //	addMovie
-	private Date duration =null;
+	private Date duration;
 	private String language ;
 	private String mainActors ;
 	private int minAge;
 	private String title;
 	private String director; 
-	private Date startingDate = null; 
-	private Date endDate =null ; 
+	private Date startingDate ; 
+	private Date endDate; 
 	private String subtitles;
 	
        //  addSessions
@@ -47,7 +50,7 @@ public class CinemaAction extends ActionSupport {
 	private int idSession;       
 	private Session sess ;  	
 	
-	
+	 ServletRequest request ;
 	
 	public String getAllMovieTheatres() {
 		MovieTheatreService movieTheatreService=new MovieTheatreService(); 
@@ -55,14 +58,15 @@ public class CinemaAction extends ActionSupport {
 		return SUCCESS;
     }
 	
-	public String movieSessions() {
-		SessionService sessionService=new SessionService(); 
-		setSessions(sessionService.getSessions(4));
-		return SUCCESS;
-    }
+//	public String movieSessions() {
+//		SessionService sessionService=new SessionService(); 
+//		setSessions(sessionService.getSessions(4));
+//		return SUCCESS;
+//    }
 	
 	public String getMovie() {
 		MovieService movieService=new MovieService(); 
+		System.out.println(idMovie);
 		this.setMovi(movieService.getMovie(idMovie));
 		return SUCCESS;
     }
@@ -96,7 +100,8 @@ public class CinemaAction extends ActionSupport {
 	
 	public String addSessions() {
 		SessionService sessionService=new SessionService(); 
-		sessionService.addSessions(refMovie,jour);
+	    System.out.println(startingTime);
+		sessionService.addSessions(idMovie,jour,startingTime);
 		return SUCCESS;
     }
 	
@@ -107,26 +112,19 @@ public class CinemaAction extends ActionSupport {
     }
 	
 	public String updateSession() {
-		System.out.println(idMovie);
+		//System.out.println(idMovie);
 		SessionService sessionService=new SessionService(); 
-		sessionService.updateSession(refMovie,jour,idSession,startingTime);
+		sessionService.updateSession(idMovie,jour,idSession,startingTime);
 		return SUCCESS;
     }
 	
 	public String getSession() {
-		
 		SessionService sessionService=new SessionService(); 
 		sess=sessionService.getSession(idSession);
 	    refMovie=sess.getrefMovie();
 		return SUCCESS;
     }
 	
-	
-	
-	
-	
-	
-
 	public ArrayList<MovieTheatre> getMovieTheatres() {
 		return movieTheatres;
 	}
@@ -142,9 +140,6 @@ public class CinemaAction extends ActionSupport {
 	public void setSessions(ArrayList<Session> sessions) {
 		this.sessions = sessions;
 	}
-
-
-	
 
 	public ArrayList<Movie> getMovies() {
 		return movies;
@@ -281,6 +276,14 @@ public class CinemaAction extends ActionSupport {
 
 	public void setSess(Session sess) {
 		this.sess = sess;
+	}
+
+	public Date getStartingTime() {
+		return startingTime;
+	}
+
+	public void setStartingTime(Date startingTime) {
+		this.startingTime = startingTime;
 	}
 	
 }

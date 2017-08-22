@@ -25,10 +25,10 @@
    <s:url namespace="/Action" action=" datatable.action" var="urll" >
 
            </s:url>
-            <h2><a href="<s:property value="urll" />" >datatable</a>
+            <h2><a href="<s:property value="urll" />" >datatable</a>       <s:property value="#session.userName"/> <s:property value="#session.id"/>
 		   
          
-   
+    
         
         <table class="table table-bordered table-hover table-inverse" style="width: auto;" align="center">
         
@@ -36,7 +36,7 @@
          <s:iterator value="movieTheatres" var="movieTheatre">
          <tr>
             <s:iterator value="#movieTheatre"> 
-            
+               
            <s:url namespace="/Action" action="getAllMovie.action" var="urlTag" >
            <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
            </s:url>
@@ -46,7 +46,7 @@
            <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
            </s:url>
 			  &nbsp;&nbsp;&nbsp;
-		 	<s:if test="%{#movieTheatre.name=='Wepler'}">
+		 	<s:if test="%{#movieTheatre.refProprio==#session.id}">
 			  	<a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-plus">Add Movie</span></a>
           	</s:if>   
          

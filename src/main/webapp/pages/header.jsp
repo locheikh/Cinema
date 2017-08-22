@@ -14,11 +14,20 @@
 					<li><a href="getAllMovie"><s:property value="getText('label.movie')"/></a></li>
 					<%-- <li><a href="CinemaGetMovie"><s:property value="getText('label.movie')"/></a></li> --%>
 					<li><a href="getAllMovieTheatres"><s:property value="getText('label.movieTheatre')"/></a></li>
-					<!-- <li><a href="movieSessions">Session</a></li>
-					<li><a href="movieForm">addMovie</a></li>
-					<li><a href="sessionsForm">addSessions</a></li> -->
-					<li><a href="login"><span class="glyphicon glyphicon-user"></span></a></li>
-					<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+					
+					<s:if test="%{#session.userName!=null}">
+			  	        <li><a><s:property value="#session.userName"/></a>  </li>
+			  	        <li><a href="logout">                                                  
+			  	       &emsp; &emsp; &emsp; &emsp; <span class="glyphicon glyphicon-log-out">Deconnexion</span></a></li>
+                 	</s:if>   
+                    <s:else>
+    					<li><a href="login"><span class="glyphicon glyphicon-user">Connexion</span></a></li>
+					</s:else>
+         
+					
+					
+					
+					
 			</ul>
 		</div>
 	</div>

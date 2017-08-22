@@ -34,8 +34,8 @@ public class SessionService  /*implements Closeable*/ {
 			return session;
 		}                 
 
-		public void addSessions(int refMovie,Date jour) {
-			sessionDAO.addSessions(refMovie,jour);
+		public void addSessions(int refMovie,Date jour, Date startingTime) {
+			sessionDAO.addSessions(refMovie,jour,startingTime);
 		}
 
 
