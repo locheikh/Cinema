@@ -15,7 +15,7 @@
 			<result name="success">/pages/HelloWorld.jsp</result>
 		</action>
 		
-		<action name="datatable" class="Action.CinemaAction" method="getAllMovie">
+		<action name="datatable" class="Action.CinemaAction" method="getAll">
 			<result >/pages/datatable.jsp</result>
 		</action>
 		 
@@ -105,8 +105,7 @@
 	  </action>
 	  
 	  
-	  
-	  
+
 	<!-- <action name="movieSessions" class="Action.SessionAction" method="movieSessions">
 			<result name="success">/pages/Session.jsp</result>
 			<result name="error">/pages/error.jsp</result>
@@ -156,7 +155,6 @@
 				<param name="actionName">getMovie</param>
             	<param name="namespace">/Action</param>
         		<param name="parse">true</param>
-   <!--      		<param name="refMovie">${refMovie}</param> -->
         		<param name="idMovie">${idMovie}</param>
 			</result>
 	  </action> 	

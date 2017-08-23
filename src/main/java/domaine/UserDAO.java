@@ -36,7 +36,6 @@ public class UserDAO {
 		           PreparedStatement ps = conn.prepareStatement(sql);
 		           ps.setString(1,login);
 		           ps.setString(2,password);
-		           System.out.println(sql);
 		           ResultSet rs = ps.executeQuery();
 	           while (rs.next()) {
      	           id=rs.getInt("id");

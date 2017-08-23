@@ -34,7 +34,10 @@
             	
             	<h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2>
             	De <s:property value="director" />
-           
+         
+
+           <s:if test="%{#parameters.refMovieTheatre[0]==#session.id}">
+          
            		<s:url namespace="/Action" action="sessionsForm" var="urlTag2" >
             		<s:param name="refMovie"><s:property value="id"/></s:param>
            		</s:url>
@@ -45,10 +48,8 @@
             		<s:param name="idMovie"><s:property value="id"/></s:param>
             		<s:param name="refMovieTheatre" value="{#parameters['refMovieTheatre']}"/>
            		</s:url>
-           
-           <%-- <s:property value="%{#parameters['refMovieTheatre']}"/> --%>
-            	
-            	
+          
+
             	<a href="<s:property value="#urlTag3" />" ><span class="glyphicon glyphicon-remove"></span></a>
                         
                        
@@ -58,6 +59,12 @@
            		</s:url>            
                                
           <a href="<s:property value="#urlTag4" />" ><span class="glyphicon glyphicon-edit"></span></a>
+          
+          
+         
+			  	
+          	</s:if>   
+          
            
           </s:iterator>
          <tr>     

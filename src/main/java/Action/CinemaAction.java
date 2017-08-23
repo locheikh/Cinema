@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.Movie;
+import model.MovieAll;
 import model.MovieTheatre;
 import model.Session;
 import service.MovieService;
@@ -21,6 +22,7 @@ public class CinemaAction extends ActionSupport {
 	private ArrayList<Session> sessions=null;
 	//private Movie movie=null;
 	private ArrayList<Movie>movies=null;
+	private ArrayList<MovieAll>moviesAll=null;
 	private Movie movi=null;
 	         //readMovies
 	private int refMovieTheatre;
@@ -50,7 +52,13 @@ public class CinemaAction extends ActionSupport {
 	private int idSession;       
 	private Session sess ;  	
 	
-	 ServletRequest request ;
+	
+	 
+	 public String getAll() {
+			MovieService movieService=new MovieService(); 
+			setMoviesAll(movieService.getAll());
+			return SUCCESS;
+	    } 
 	
 	public String getAllMovieTheatres() {
 		MovieTheatreService movieTheatreService=new MovieTheatreService(); 
@@ -58,15 +66,8 @@ public class CinemaAction extends ActionSupport {
 		return SUCCESS;
     }
 	
-//	public String movieSessions() {
-//		SessionService sessionService=new SessionService(); 
-//		setSessions(sessionService.getSessions(4));
-//		return SUCCESS;
-//    }
-	
 	public String getMovie() {
 		MovieService movieService=new MovieService(); 
-		System.out.println(idMovie);
 		this.setMovi(movieService.getMovie(idMovie));
 		return SUCCESS;
     }
@@ -74,6 +75,8 @@ public class CinemaAction extends ActionSupport {
 	public String deleteMovie() {
 		MovieService movieService=new MovieService(); 
 		movieService.deleteMovie(idMovie);
+		this.setMovi(movieService.getMovie(idMovie));
+		refMovieTheatre=movi.getRefMovieTheatre();
 		return SUCCESS;
     }
 	
@@ -100,7 +103,6 @@ public class CinemaAction extends ActionSupport {
 	
 	public String addSessions() {
 		SessionService sessionService=new SessionService(); 
-	    System.out.println(startingTime);
 		sessionService.addSessions(idMovie,jour,startingTime);
 		return SUCCESS;
     }
@@ -108,11 +110,12 @@ public class CinemaAction extends ActionSupport {
 	public String deleteSession() {
 		SessionService sessionService=new SessionService(); 
 		sessionService.deleteSession(idSession);
+		sess=sessionService.getSession(idSession);
+		idMovie=sess.getrefMovie();
 		return SUCCESS;
     }
 	
 	public String updateSession() {
-		//System.out.println(idMovie);
 		SessionService sessionService=new SessionService(); 
 		sessionService.updateSession(idMovie,jour,idSession,startingTime);
 		return SUCCESS;
@@ -121,7 +124,7 @@ public class CinemaAction extends ActionSupport {
 	public String getSession() {
 		SessionService sessionService=new SessionService(); 
 		sess=sessionService.getSession(idSession);
-	    refMovie=sess.getrefMovie();
+	    idMovie=sess.getrefMovie();
 		return SUCCESS;
     }
 	
@@ -284,6 +287,14 @@ public class CinemaAction extends ActionSupport {
 
 	public void setStartingTime(Date startingTime) {
 		this.startingTime = startingTime;
+	}
+
+	public ArrayList<MovieAll> getMoviesAll() {
+		return moviesAll;
+	}
+
+	public void setMoviesAll(ArrayList<MovieAll> moviesAll) {
+		this.moviesAll = moviesAll;
 	}
 	
 }

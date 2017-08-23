@@ -16,6 +16,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.Movie;
+import model.MovieAll;
+import model.MovieTheatre;
 
 
 
@@ -84,7 +86,7 @@ public class MovieDAO {
 	
 	public Movie getMovie(int  idMovie) {
 		 Movie	movie =null;	
-		ArrayList<Movie>listMovie =new ArrayList<Movie>() ;	
+		//ArrayList<Movie>listMovie =new ArrayList<Movie>() ;	
 	      String ret ="edrrrrr";//ERROR;
 	        Connection conn = null;
               Date duration;
@@ -122,7 +124,7 @@ public class MovieDAO {
                    movie=new Movie(id, title, duration,language,subtitles,mainActors,minAge,
       			director,startingDate,endDate,refMovieTheatre); 	        	  
       	           //movie.setDuration(duration);
-	        	   listMovie.add(movie);
+	        	   //listMovie.add(movie);
 	        	   
 	           }
 	        } catch (Exception e) {
@@ -234,14 +236,17 @@ String sql = "DELETE FROM movie WHERE id = ?";
         	 Class.forName("com.mysql.jdbc.Driver");
         	 conn = DriverManager.getConnection(URL, "root", "root");
         	 final PreparedStatement ps = conn.prepareStatement(sql);
-        	 ps.setTimestamp(2,(Timestamp) duration);
-	         ps.setString(3, language);
+        	 Timestamp ts_now = new Timestamp(duration.getTime()); 
+	         ps.setTimestamp(2,ts_now );
+        	 ps.setString(3, language);
 	         ps.setString(5, mainActors);
 	         ps.setInt(6,minAge);
 	         ps.setString(1,title);
 	         ps.setString(4,director);
-	         ps.setTimestamp(7,(Timestamp) startingDate);
-	         ps.setTimestamp(8,(Timestamp) endDate);
+	         java.sql.Date sqlstartingDate = new java.sql.Date(startingDate.getTime());
+	         ps.setDate(7,sqlstartingDate);
+	         java.sql.Date sqlendDate = new java.sql.Date(endDate.getTime());
+	         ps.setDate(8,sqlendDate);
 	         ps.setString(9,subtitles);
 	         ps.setInt(10,refMovieTheatre);
         	 ps.executeUpdate();		
@@ -253,16 +258,62 @@ String sql = "DELETE FROM movie WHERE id = ?";
 		// TODO Auto-generated catch block
         	 e.printStackTrace();
          }
+	}
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	public ArrayList<MovieAll> getAll() {
+		// TODO Auto-generated method stub
+		 MovieAll	movie =null;	
+			ArrayList<MovieAll>listMovie =new ArrayList<MovieAll>() ;	
+		      String ret ="error";//ERROR;
+		        Connection conn = null;
+	               String language;
+	               int id;	  
+	               String adress;
+	     		   String city;
+	    		   String name;
+	    		   String type;
+	    		   int refProprio;
+	               String title;
+	               int refMovieTheatre;
+	               
+	             
+		        try {
+		        	String URL = "jdbc:mysql://localhost:3306/cinema";
+			           Class.forName("com.mysql.jdbc.Driver");
+			           conn = DriverManager.getConnection(URL, "root", "root");
+			           String sql = "SELECT movie.id,movie.title,movie.language,movie.refMovieTheatre,movieTheatre.name,movieTheatre.adress,movieTheatre.city,movieTheatre.type,movieTheatre.refProprio FROM `movie` INNER JOIN `movieTheatre` ON movieTheatre.id = movie.refMovieTheatre ORDER BY movieTheatre.city"; 
+			           PreparedStatement ps = conn.prepareStatement(sql);
+			    
+			           ResultSet rs = ps.executeQuery();
+			           //System.out.println(ps);
+		           while (rs.next()) {
+		        	   
+		        	   refProprio=rs.getInt("movieTheatre.refProprio");
+		        	   System.out.println(refProprio);
+	       	           id=rs.getInt("movie.id");
+		        	   title=rs.getString("movie.title");
+		        	   language=rs.getString("movie.language");
+		        	   adress=rs.getString("movieTheatre.adress");
+		        	   city=rs.getString("movieTheatre.city");
+		        	   name=rs.getString("movieTheatre.name");
+		        	   type=rs.getString("movieTheatre.type");
+		        	   refMovieTheatre=rs.getInt("movie.refMovieTheatre");
+		        	   movie =new MovieAll( language,id, adress, city, name, type,refProprio,title,refMovieTheatre);
+		        	   listMovie.add(movie);
+		        	   //System.out.println(movie);
+		           }
+		        } catch (Exception e) {
+		        	System.out.println("ERROR");
+		        } finally {
+		           if (conn != null) {
+		              try {
+		                 conn.close();
+		              } catch (Exception e) {
+		              }
+		           }
+		        } 
+		        return listMovie;	
+
 	}
 
 	

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import domaine.MovieDAO;
 import domaine.SessionDAO;
 import model.Movie;
+import model.MovieAll;
 
 
 
@@ -33,6 +34,7 @@ public class MovieService  /*implements Closeable*/ {
 
 		
 		public  Movie getMovie(int idMovie)  {
+			
 			Movie movie=movieDAO.getMovie(idMovie);
 			movie.setSessions(sessionDAO.getSessions(idMovie));
 			return movie;
@@ -71,6 +73,15 @@ public class MovieService  /*implements Closeable*/ {
 			
 			movieDAO.updateMovie(idMovie,duration,language,mainActors,minAge,title,director, 
 					startingDate,endDate,subtitles,refMovieTheatre);
+
+		}
+
+
+
+		public ArrayList<MovieAll> getAll() {
+			// TODO Auto-generated method stub
+			ArrayList<MovieAll>ListMovie=movieDAO.getAll();
+			return ListMovie;
 
 		}
 

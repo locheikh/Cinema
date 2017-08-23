@@ -16,12 +16,12 @@
 </script>
 </head>
 <body>
-<s:property value="movies" />
+<jsp:include page="/pages/header.jsp"></jsp:include>
 	<div class="container">
-		<h1>Pagination in Struts 2 using jQuery datatable example</h1>
+		<%-- <h1>Pagination in Struts 2 using jQuery datatable example</h1>
 		<s:form action="pagination.action" method="post">
 			<s:submit cssClass="btn btn-lg btn-primary"></s:submit>
-		</s:form>
+		</s:form> --%>
 
          
 		<div style="margin-top: 50px; margin-right: 282px;">
@@ -32,23 +32,54 @@
 
 					</tr>
 				</thead>
-				  <s:iterator value="movies">
+				  <s:iterator value="moviesAll">
 					<tr>
 						<td>
-							<s:property value="title" />
-							<s:property value="duration" />
-							<s:property value="language" />
-							lyon
+						<%-- <s:property value="id" /> --%>
+						
+						     <s:url action="Action/getMovie" var="urlTag" >
+           			<s:param name="idMovie"><s:property value="id"/></s:param>
+           		</s:url>
+            	
+            	<h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2> 
+							title:&nbsp;<s:property value="title" /> <br/> 
+ 							language:&nbsp;<s:property value="language" /> <br/> 
+							adress:&nbsp;<s:property value="adress" /> <br/> 
+							city:&nbsp;<s:property value="city" /> <br/> 
+							name:&nbsp;<s:property value="name" /> <br/> 
+							type:&nbsp;<s:property value="type" /> <br/> 
+							<%-- <s:property value="refProprio" />  <br/>  --%>
+							<s:if test="%{refProprio==#session.id}">
+          
+				           		<s:url namespace="/Action" action="sessionsForm" var="urlTag2" >
+				            		<s:param name="refMovie"><s:property value="id"/></s:param>
+				           		</s:url>
+				           
+				            	<a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-plus"></span></a>
+				            
+				           	<s:url namespace="/Action" action="deleteMovie" var="urlTag3" >
+				            		<s:param name="idMovie"><s:property value="id"/></s:param>
+				            		<s:param name="refMovieTheatre" value="refMovieTheatre"/>
+				           		</s:url>
+				          
+				
+				            	<a href="<s:property value="#urlTag3" />" ><span class="glyphicon glyphicon-remove"></span></a>
+				                        
+				                       
+				           	 	<s:url namespace="/Action" action="MovieBeforeUpdate" var="urlTag4" >
+				            		<s:param name="idMovie"><s:property value="id"/></s:param>
+				            		<s:hidden name="refMovieTheatre" value="refMovieTheatre"/>
+				           		</s:url>            
+				                               
+				          		<a href="<s:property value="#urlTag4" />" ><span class="glyphicon glyphicon-edit"></span></a>
+				          		 
+          					</s:if>  
+							
+							
+							
 						</td>
 					</tr>
-					<tr>
-						<td>
-							<s:property value="title" />
-							<s:property value="duration" />
-							<s:property value="language" />
-							paris
-						</td>
-					</tr>
+
 				</s:iterator>  
 			</table>
 		</div>

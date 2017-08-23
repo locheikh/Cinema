@@ -24,20 +24,20 @@ public class AuthenticationAction extends ActionSupport implements SessionAware 
        UserService userService=new UserService();
        setUser(userService.getUser(userName,password));
        
-        System.out.println(user);
+//        System.out.println(user);
        
         // check if the userName is already stored in the session
         if (sessionMap.containsKey("userName")) {
             loggedUserName = (String) sessionMap.get("userName");
         }
-        if (loggedUserName != null && loggedUserName.equals("admin")) {
+        if (loggedUserName != null /*&& loggedUserName.equals("admin")*/) {
             return SUCCESS; // return welcome page
         }
          
         // if no userName stored in the session,
         // check the entered userName and password
-        if (userName != null && userName.equals("admin")
-                && password != null && password.equals("admin")) {
+        if (userName != null && userName.equals(/*"admin"*/user.getLogin())
+                && password != null && password.equals(user.getPassword())) {
              
             // add userName to the session
             sessionMap.put("userName",user.getPrenom());

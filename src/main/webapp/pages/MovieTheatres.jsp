@@ -22,10 +22,7 @@
 
   <jsp:include page="/pages/header.jsp"></jsp:include>
   
-   <s:url namespace="/Action" action=" datatable.action" var="urll" >
-
-           </s:url>
-            <h2><a href="<s:property value="urll" />" >datatable</a>       <s:property value="#session.userName"/> <s:property value="#session.id"/>
+ 
 		   
          
     
@@ -50,12 +47,7 @@
 			  	<a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-plus">Add Movie</span></a>
           	</s:if>   
          
-         
-        
-           
-          
-     
-          
+
            	</s:iterator>
          <tr>     
          <br/><hr><br/>                     
