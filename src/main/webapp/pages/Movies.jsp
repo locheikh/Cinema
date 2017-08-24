@@ -20,7 +20,8 @@
 <body>
 
   <jsp:include page="/pages/header.jsp"></jsp:include>
-        
+  
+       <%--  <h1 > <s:property value="MT" /> </h1>  --%>     
         <table class="table table-bordered table-hover table-inverse" style="width: auto;" align="center">
          
 			
@@ -32,7 +33,7 @@
            			<s:param name="idMovie"><s:property value="id"/></s:param>
            		</s:url>
             	
-            	<h2>
+            	<h3>
 	            	<a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> 
 	            	
 	         
@@ -52,7 +53,7 @@
 	           		</s:url>
 	                                
 	
-	            	<a href="<s:property value="#urlTag3" />" ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove">Movie</button></span></a>
+	            	<a href="<s:property value="#urlTag3" />" ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">Movie</button></span></a>
 	                        
 	                       
 	           	 	<s:url namespace="/Action" action="MovieBeforeUpdate" var="urlTag4" >
@@ -61,13 +62,13 @@
 	           		</s:url>            
 	                               
 	               <a href="<s:property value="#urlTag4" />" ><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit">Movie</button></span></a>
-          </h2>
+          
         
           
          
 			  	
-          	</s:if>   
-             <br/>De <s:property value="director" />
+          	</s:if> </h3>  
+           De <s:property value="director" />
            
           </s:iterator>
          <tr>     

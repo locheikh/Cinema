@@ -37,8 +37,7 @@
 	        <sx:datetimepicker cssClass = "form-control" type="time" label="duration" name="duration" displayFormat="hh:mm:ss"></sx:datetimepicker> 
        	  <%--   <s:hidden name="test" value="1"/>   --%>
        		
-       		
-       		
+
        		<s:hidden name="refMovieTheatre" value="%{movi.refMovieTheatre}"/> 
        		   <s:hidden name="idMovie" value="%{idMovie}"/> 
        		<s:submit label="Action/updateMovie"/>

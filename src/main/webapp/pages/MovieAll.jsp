@@ -31,7 +31,7 @@
 			<table class="table table-hover table-bordered" id="mytbl">
 				<thead>
 					<tr class="success">
-						<th>MovieTheatre</th>
+						<th>Movies</th>
 
 					</tr>
 				</thead>
@@ -44,40 +44,40 @@
            			<s:param name="idMovie"><s:property value="id"/></s:param>
            		</s:url>
             	
-            	<h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2> 
+            	<h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> 
 
- 							language:&nbsp;<s:property value="language" /> <br/> 
+ 						
+							<s:if test="%{refProprio==#session.id}">
+          
+				           		<s:url namespace="/Action" action="sessionsForm" var="urlTag2" >
+	            		<s:param name="refMovie"><s:property value="id"/></s:param>
+	           		</s:url>
+	         
+	            	<a href="<s:property value="#urlTag2" />" ><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus">Session</span></button></a>
+	            
+	            	<s:url namespace="/Action" action="deleteMovie" var="urlTag3" >
+	            		<s:param name="idMovie"><s:property value="id"/></s:param>
+	            		<%-- <s:param name="refMovieTheatre" value="{#parameters['refMovieTheatre']}"/> --%>
+	            		<s:param name="refMovieTheatre" value="refMovieTheatre"/>
+	           		</s:url>
+	                                
+	
+	            	<a href="<s:property value="#urlTag3" />" ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">Movie</button></span></a>
+	                        
+	                       
+	           	 	<s:url namespace="/Action" action="MovieBeforeUpdate" var="urlTag4" >
+	            		<s:param name="idMovie"><s:property value="id"/></s:param>
+	            		<s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/>
+	           		</s:url>        
+	                               
+	               <a href="<s:property value="#urlTag4" />" ><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit">Movie</button></span></a>
+          					</s:if> </h2>      
+							language:&nbsp;<s:property value="language" /> <br/> 
 							adress:&nbsp;<s:property value="adress" /> <br/> 
 							city:&nbsp;<s:property value="city" /> <br/> 
 							movieTheatre:&nbsp;<s:property value="name" /> <br/> 
 							type:&nbsp;<s:property value="type" /> <br/> 
-							<%-- <s:property value="refProprio" />  <br/>  --%>
-							<s:if test="%{refProprio==#session.id}">
-          
-				           		<s:url namespace="/Action" action="sessionsForm" var="urlTag2" >
-				            		<s:param name="refMovie"><s:property value="id"/></s:param>
-				           		</s:url>
-				           
-				            	<a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-plus"></span></a>
-				            
-				           	<s:url namespace="/Action" action="deleteMovie" var="urlTag3" >
-				            		<s:param name="idMovie"><s:property value="id"/></s:param>
-				            		<s:param name="refMovieTheatre" value="refMovieTheatre"/>
-				           		</s:url>
-				          
-				
-				            	<a href="<s:property value="#urlTag3" />" ><span class="glyphicon glyphicon-remove"></span></a>
-				                        
-				                       
-				           	 	<s:url namespace="/Action" action="MovieBeforeUpdate" var="urlTag4" >
-				            		<s:param name="idMovie"><s:property value="id"/></s:param>
-				            		<s:hidden name="refMovieTheatre" value="refMovieTheatre"/>
-				           		</s:url>            
-				                               
-				          		<a href="<s:property value="#urlTag4" />" ><span class="glyphicon glyphicon-edit"></span></a>
-				          		 
-          					</s:if>  
-							
+						
 							
 							
 						</td>

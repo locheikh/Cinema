@@ -25,6 +25,7 @@ public class CinemaAction extends ActionSupport {
 	private Movie movi=null;
 	         
 	//readMovies
+	private String MT;
 	private int refMovieTheatre;
 	         
 	         //readMovie
@@ -84,6 +85,10 @@ public class CinemaAction extends ActionSupport {
 	public String getAllMovie() {
 		MovieService movieService=new MovieService(); 
 		movies=movieService.getAllMovie(refMovieTheatre);
+//		MovieTheatreService movieTheatreService=new MovieTheatreService(); 
+//		setMovieTheatres(movieTheatreService.getAllMovieTheatres());
+//		int i=movieTheatres.id.
+//		setMT(movieTheatres.get(i).getName());
 		return SUCCESS;
     }
 	
@@ -369,6 +374,14 @@ public class CinemaAction extends ActionSupport {
 
 	public void setTest(int test) {
 		this.test = test;
+	}
+
+	public String getMT() {
+		return MT;
+	}
+
+	public void setMT(String mT) {
+		MT = mT;
 	}
 	
 	

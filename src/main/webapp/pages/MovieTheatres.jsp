@@ -1,64 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>   
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
-<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
-<%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
-<%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
-
- <!-- Bootstrap -->
-	    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
-</head>
-<body>
-
-  <jsp:include page="/pages/header.jsp"></jsp:include>
-
-        
-        <table class="table table-bordered table-hover table-inverse" style="width: auto;" align="center">
-        
-			
-         <s:iterator value="movieTheatres" var="movieTheatre">
-         <tr>
-            <s:iterator value="#movieTheatre"> 
-               
-           <s:url namespace="/Action" action="getAllMovie.action" var="urlTag" >
-           <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
-           </s:url>
-		    <h2>	<a href="<s:property value="#urlTag" />" ><s:property value="name" /></a>
-				   
-				   <s:url namespace="/Action" action="movieForm" var="urlTag2" >
-		           <s:param name="refMovieTheatre"><s:property value="id" /></s:param>
-		           </s:url>
-					  &nbsp;&nbsp;&nbsp;
-				 	<s:if test="%{#movieTheatre.refProprio==#session.id}">
-				 	
-					  <a href="<s:property value="#urlTag2" />" ><button type="button" class="btn btn-primary"> <span class="glyphicon glyphicon-plus">Movie</span></button></a>
-		          	</s:if>
-          	</h2>   
-         
-            -<s:property value="city" />  </br>
-            <s:property value="adress" />  
-           	</s:iterator>
-         <tr>     
-         <br/><hr><br/>                     
-         </s:iterator>
-       </table>
-
-</body>
-</html> --%>
-
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
@@ -88,11 +27,7 @@
 <body>
 <jsp:include page="/pages/header.jsp"></jsp:include>
  <s:property value="%{session.id}" />
- <%-- <s:set name="age" value="%{#session.id}"/>
-  <s:property value="age" /> --%>
-  
-  
-  
+
 	<div class="container">
 		<%-- <h1>Pagination in Struts 2 using jQuery datatable example</h1>
 		<s:form action="pagination.action" method="post">
@@ -104,7 +39,7 @@
 			<table class="table table-hover table-bordered" id="mytbl">
 				<thead>
 					<tr class="success">
-						<th>name</th>
+						<h1><th>movieTheatres</th></h1> 
 
 					</tr>
 				</thead>
@@ -114,6 +49,7 @@
 						          
 					           <s:url namespace="/Action" action="getAllMovie.action" var="urlTag" >
 					           	<s:param name="refMovieTheatre"><s:property value="id" /></s:param>
+					        
 					           </s:url>
 							    <h2>	<a href="<s:property value="#urlTag" />" ><s:property value="name" /></a>
 									   
@@ -129,8 +65,6 @@
 					         
 					            -<s:property value="city" />  </br>
 					             <s:property value="adress" />  
-							
-							
 							
 						</td>
 					</tr>

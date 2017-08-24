@@ -24,7 +24,40 @@
 
         　        <s:set name="refmovieTheatre" value="#session.id"/>
 
-         <h2><s:property value="movi.title" /></h2>   
+         <h2><s:property value="movi.title" />
+          <s:if test="%{movi.refMovieTheatre==#session.id}">
+	          
+	           		<s:url namespace="/Action" action="sessionsForm" var="urlTag2" >
+	            		<s:param name="refMovie"><s:property value="movi.id"/></s:param>
+	           		</s:url>
+	         
+	            	<a href="<s:property value="#urlTag2" />" ><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus">Session</span></button></a>
+	            
+	            	<s:url namespace="/Action" action="deleteMovie" var="urlTag3" >
+	            		<s:param name="idMovie"><s:property value="movi.id"/></s:param>
+	            		<s:param name="refMovieTheatre" value="refMovieTheatre"/>
+	           		</s:url>
+	                                
+	
+	            	<a href="<s:property value="#urlTag3" />" ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove">Movie</button></span></a>
+	                        
+	                       
+	           	 	<s:url namespace="/Action" action="MovieBeforeUpdate" var="urlTag4" >
+	            		<s:param name="idMovie"><s:property value="movi.id"/></s:param>
+	            		<s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/>
+	           		</s:url>            
+	                               
+	               <a href="<s:property value="#urlTag4" />" ><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit">Movie</button></span></a>
+      
+        
+          
+         
+			  	
+          	</s:if>   
+         
+         
+         
+         </h2>   
         <h5>duration:&nbsp;<s:date name="movi.duration" format="HH:mm"/></h5>  
         <h5>language:&nbsp;<s:property value="movi.language" /></h5> 
         <h5>subtitles:&nbsp;<s:property value="movi.subtitles" /></h5>  
@@ -67,7 +100,7 @@
             <%-- <s:hidden name="idMovie" value="%{refMovie}"/>    --%>
             </s:url>            
             
-             &nbsp; <a href="<s:property value="#urlTag2" />" ><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit">Session</button></span></a>
+             &nbsp; <a href="<s:property value="#urlTag2" />" ><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-edit">Session</button></span></a>
         
              </s:if>  
               <br/> 
