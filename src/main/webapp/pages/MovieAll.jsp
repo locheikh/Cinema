@@ -1,4 +1,7 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
+ <!-- Bootstrap -->
+	    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"> 
+	    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,7 @@
 			<table class="table table-hover table-bordered" id="mytbl">
 				<thead>
 					<tr class="success">
-						<th>name</th>
+						<th>MovieTheatre</th>
 
 					</tr>
 				</thead>
@@ -42,11 +45,11 @@
            		</s:url>
             	
             	<h2><a href="<s:property value="#urlTag" />" ><s:property value="title" /></a> </h2> 
-							title:&nbsp;<s:property value="title" /> <br/> 
+
  							language:&nbsp;<s:property value="language" /> <br/> 
 							adress:&nbsp;<s:property value="adress" /> <br/> 
 							city:&nbsp;<s:property value="city" /> <br/> 
-							name:&nbsp;<s:property value="name" /> <br/> 
+							movieTheatre:&nbsp;<s:property value="name" /> <br/> 
 							type:&nbsp;<s:property value="type" /> <br/> 
 							<%-- <s:property value="refProprio" />  <br/>  --%>
 							<s:if test="%{refProprio==#session.id}">

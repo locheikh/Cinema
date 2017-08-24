@@ -20,11 +20,11 @@ public class CinemaAction extends ActionSupport {
 
 	private ArrayList<MovieTheatre> movieTheatres=null;
 	private ArrayList<Session> sessions=null;
-	//private Movie movie=null;
 	private ArrayList<Movie>movies=null;
 	private ArrayList<MovieAll>moviesAll=null;
 	private Movie movi=null;
-	         //readMovies
+	         
+	//readMovies
 	private int refMovieTheatre;
 	         
 	         //readMovie
@@ -52,6 +52,7 @@ public class CinemaAction extends ActionSupport {
 	private int idSession;       
 	private Session sess ;  	
 	
+	private int test;
 	
 	 
 	 public String getAll() {
@@ -73,9 +74,9 @@ public class CinemaAction extends ActionSupport {
     }
 	
 	public String deleteMovie() {
-		MovieService movieService=new MovieService(); 
-		movieService.deleteMovie(idMovie);
+		MovieService movieService=new MovieService();
 		this.setMovi(movieService.getMovie(idMovie));
+		movieService.deleteMovie(idMovie);
 		refMovieTheatre=movi.getRefMovieTheatre();
 		return SUCCESS;
     }
@@ -88,6 +89,11 @@ public class CinemaAction extends ActionSupport {
 	
 	public String addMovie() {
 		MovieService movieService=new MovieService(); 
+		//if(language.trim().equals(""))return INPUT;
+		
+		
+		
+		
 		movieService.addMovie(duration,language,mainActors,minAge,title,director, 
 				startingDate,endDate,subtitles,refMovieTheatre);   //1 refMovieTheatre
 		return SUCCESS;
@@ -109,14 +115,18 @@ public class CinemaAction extends ActionSupport {
 	
 	public String deleteSession() {
 		SessionService sessionService=new SessionService(); 
-		sessionService.deleteSession(idSession);
 		sess=sessionService.getSession(idSession);
+		sessionService.deleteSession(idSession);
 		idMovie=sess.getrefMovie();
 		return SUCCESS;
     }
 	
 	public String updateSession() {
 		SessionService sessionService=new SessionService(); 
+//		SimpleDateFormat formater = null;
+//		formater = new SimpleDateFormat("EEEE, d MMM yyyy");
+//		System.out.println(formater.format(aujourdhui));
+		 
 		sessionService.updateSession(idMovie,jour,idSession,startingTime);
 		return SUCCESS;
     }
@@ -124,7 +134,7 @@ public class CinemaAction extends ActionSupport {
 	public String getSession() {
 		SessionService sessionService=new SessionService(); 
 		sess=sessionService.getSession(idSession);
-	    idMovie=sess.getrefMovie();
+	    refMovie=sess.getrefMovie();
 		return SUCCESS;
     }
 	
@@ -296,5 +306,71 @@ public class CinemaAction extends ActionSupport {
 	public void setMoviesAll(ArrayList<MovieAll> moviesAll) {
 		this.moviesAll = moviesAll;
 	}
+	
+	public void validate()
+	   {  
+		  if(test==1){
+
+			  if (title == null || title.trim().equals(""))
+			   {
+			    addFieldError("title","The name is required");
+			   }
+			  if (language== null || language.trim().equals(""))
+			   {
+		         addFieldError("language","The language  is required");
+		       }
+			   if (subtitles== null || subtitles.trim().equals(""))
+			   {
+		         addFieldError("subtitles","The subtitles is required");
+		       }
+			   if (minAge ==0)
+			   {
+		         addFieldError("minAge","The minAge is required");
+		       }
+			   if (director== null || director.trim().equals(""))
+			   {
+		         addFieldError("director","The director is  required");
+		       }
+			   if (director== null || director.trim().equals(""))
+			   {
+		         addFieldError("mainActors","The mainActors is required");
+		       }
+			   if (duration== null /*|| duration.trim().equals("")*/)
+			   {
+		         addFieldError("duration","The duration is required");
+		       }
+			   if(endDate==null)
+			   {
+				   addFieldError("endDate","The endDate is required");
+			   }
+			   if(startingDate==null)
+			   {
+				   addFieldError("startingDate","The startingDate is required");
+			   }
+			   
+		  }
+		  
+		  if(test==2){
+			  if(jour==null)
+			   {
+				   addFieldError("jour","The Date is required");
+			   }
+			  if(startingTime==null)
+			   {
+				   addFieldError("startingTime","The startingDate is required");
+			   }
+
+		  }
+	   }
+
+	public int getTest() {
+		return test;
+	}
+
+	public void setTest(int test) {
+		this.test = test;
+	}
+	
+	
 	
 }

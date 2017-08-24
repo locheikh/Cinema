@@ -25,13 +25,14 @@
         　        <s:set name="refmovieTheatre" value="#session.id"/>
 
          <h2><s:property value="movi.title" /></h2>   
-        <h5>duration:<s:property value="movi.duration" /></h5> 
-        <h5>subtitles<s:property value="movi.subtitles" /></h5>  
-        <h5>min Age:<s:property value="movi.minAge" /></h5>    
-        <h5>director:<s:property value="movi.director" /></h5>    
-        <h5>main Actors:<s:property value="movi.mainActors" /></h5>    
-        <h5> startingDate   <s:date name="movi.startingDate" format="dd/MM/yyyy EEEE" /><br/></h5>  
-        <h5>endDate   <s:date name="movi.endDate" format="dd/MM/yyyy EEEE" /><br/></h2> 
+        <h5>duration:&nbsp;<s:date name="movi.duration" format="HH:mm"/></h5>  
+        <h5>language:&nbsp;<s:property value="movi.language" /></h5> 
+        <h5>subtitles:&nbsp;<s:property value="movi.subtitles" /></h5>  
+        <h5>min Age:&nbsp;<s:property value="movi.minAge" /></h5>    
+        <h5>director:&nbsp;<s:property value="movi.director" /></h5>    
+        <h5>main Actors:&nbsp;<s:property value="movi.mainActors" /></h5>    
+        <h5> startingDate:&nbsp;  <s:date name="movi.startingDate" format="dd/MM/yyyy EEEE" /><br/></h5>  
+        <h5>endDate:&nbsp; <s:date name="movi.endDate" format="dd/MM/yyyy EEEE" /><br/></h2> 
         <br/> 
         
     <hr> 
@@ -44,9 +45,9 @@
             <s:iterator value="#session"> 
 
           <%-- <h2> <s:property value="jour"/> </h2> <br/> --%>
-          <s:date name="jour" format="dd/MM/yyyy EEEE" /><br/>
-          <s:date name="startingTime" format="HH:mm"/> <br/>
-            <br/> 
+          <s:date name="jour" format="dd/MM/yyyy EEEE" /><!-- <br/> -->
+          
+         <!--    <br/>  -->
          
 
             <%--  <s:property value="idMovie"/> --%>
@@ -58,7 +59,7 @@
              <s:param name="idMovie"><s:property value="movi.id"/></s:param>
              </s:url>
            
-            <a href="<s:property value="#urlTag" />" ><span class="glyphicon glyphicon-remove"></span></a>
+            &nbsp;<a href="<s:property value="#urlTag" />" ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove">Session</button></span></a>
 
         <%-- <s:property value="idMovie" /> --%>
             <s:url namespace="/Action" action="sessionBeforeUpdate" var="urlTag2" >
@@ -66,10 +67,11 @@
             <%-- <s:hidden name="idMovie" value="%{refMovie}"/>    --%>
             </s:url>            
             
-            
-            <a href="<s:property value="#urlTag2" />" ><span class="glyphicon glyphicon-edit"></span></a>
-     
+             &nbsp; <a href="<s:property value="#urlTag2" />" ><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-edit">Session</button></span></a>
+        
              </s:if>  
+              <br/> 
+              <s:date name="startingTime" format="HH:mm"/> 
            	</s:iterator>
          <tr>     
          <br/><hr><br/>                     

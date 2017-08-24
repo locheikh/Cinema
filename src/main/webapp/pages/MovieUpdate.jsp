@@ -20,7 +20,7 @@
 <body>
   <jsp:include page="/pages/header.jsp"></jsp:include>
 
-<%-- <s:property value="%{movi.refMovieTheatre}"/>  --%>
+<%-- <s:property value="%{movi.startingDate}"/>   --%>
 
 		<center>
 		<s:form  namespace="/Action" action="updateMovie" method="post">
@@ -35,7 +35,7 @@
             <sx:datetimepicker cssClass = "form-control" name="endDate" label="endDate"
                      displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
 	        <sx:datetimepicker cssClass = "form-control" type="time" label="duration" name="duration" displayFormat="hh:mm:ss"></sx:datetimepicker> 
-       		
+       	  <%--   <s:hidden name="test" value="1"/>   --%>
        		
        		
        		

@@ -28,7 +28,7 @@
 displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
 	<sx:datetimepicker value="" cssClass = "form-control" type="time" label="Ship Time" name="startingTime" displayFormat="hh:mm:ss"></sx:datetimepicker> 
        		<s:hidden name="idMovie" value="%{refMovie}"/> 
-       		
+       		<s:hidden name="test" value="2"/> 
        		<s:submit  label="Action/addSessions"/>
         </s:form>
  <!--  </center> -->

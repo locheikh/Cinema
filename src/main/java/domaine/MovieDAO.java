@@ -289,7 +289,6 @@ String sql = "DELETE FROM movie WHERE id = ?";
 		           while (rs.next()) {
 		        	   
 		        	   refProprio=rs.getInt("movieTheatre.refProprio");
-		        	   System.out.println(refProprio);
 	       	           id=rs.getInt("movie.id");
 		        	   title=rs.getString("movie.title");
 		        	   language=rs.getString("movie.language");

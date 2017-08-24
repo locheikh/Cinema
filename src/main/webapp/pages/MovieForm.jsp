@@ -30,14 +30,17 @@
        		<s:textfield placeholder="Subtitles" cssClass = "form-control" name="subtitles" label="Subtitles" />
        		<s:textfield placeholder="Main actors"  cssClass = "form-control" name="mainActors" label="main Actors" />
        		<s:textfield placeholder="Director" cssClass = "form-control" name="director" label="Director" />  
-       		<s:textfield placeholder="10" cssClass = "form-control" name="director" label="min Age" /> 
+       		<s:textfield cssStyle="color:blue;" placeholder="10" cssClass = "form-control" name="minAge" label="min Age" />
+       		
+       		<%-- <s:radio label="minAge" name="minAge" list="#{'1':'3','2':'10'}" value="2" /> --%>
+       		 
        		<sx:datetimepicker cssClass = "form-control" name="startingDate" label="startingDate"
                      displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
             <sx:datetimepicker cssClass = "form-control" name="endDate" label="endDate"
                      displayFormat="EEE dd-MMM-yyyy" value="EEE dd-MMM-yyyy" />
-	        <sx:datetimepicker cssClass = "form-control" type="time" label="duration" name="duration" displayFormat="hh:mm:ss"></sx:datetimepicker> 
+	        <sx:datetimepicker   cssClass = "form-control" type="time" label="duration" name="duration" displayFormat="hh:mm:ss"></sx:datetimepicker> 
        		<s:hidden name="idMovie" value="%{refMovie}"/> 
-       		
+       		 <s:hidden name="test" value="1"/> 
        		
        		 <s:hidden name="refMovieTheatre" value="%{refMovieTheatre}"/> 
        		<s:submit label="Action/addMovie"/>

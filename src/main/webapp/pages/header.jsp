@@ -27,12 +27,11 @@
 			  	       
 			  	        <li><a href="logout">                                                  
 			  	       &emsp; &emsp; &emsp; &emsp; <span class="glyphicon glyphicon-log-out">Deconnexion</span></a></li> 
-			  	       <li><a>&emsp; &emsp; &emsp; &emsp;Bienvenue <s:property value="#session.userName"/></a>  </li>
+			  	       <li><a>&emsp; &emsp; &emsp; &emsp; <s:property value="#session.userName"/>&nbsp;<s:property value="#session.Name"/></a>  </li>
                  	</s:if>   
                     <s:else>
     					<li><a href="login"><span class="glyphicon glyphicon-user">Connexion</span></a></li>
 					</s:else>
-         
 					
 					
 					

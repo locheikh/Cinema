@@ -10,14 +10,16 @@ import model.User;
 import service.MovieTheatreService;
 import service.UserService;
  
-public class AuthenticationAction extends ActionSupport implements SessionAware {
+public class UserAction extends ActionSupport implements SessionAware {
      
     private Map<String, Object> sessionMap;
-    private String userName;
-    private String password;
+    private String userName="null";
+    private String password="null";
     private User user;
+    private int test;
     
     public String login() {
+    	
         String loggedUserName = null;
         
         //System.out.println(userName+"     "+password);
@@ -36,14 +38,22 @@ public class AuthenticationAction extends ActionSupport implements SessionAware 
          
         // if no userName stored in the session,
         // check the entered userName and password
+        if(user!=null)
         if (userName != null && userName.equals(/*"admin"*/user.getLogin())
                 && password != null && password.equals(user.getPassword())) {
              
             // add userName to the session
+        	sessionMap.put("Name",user.getName());
             sessionMap.put("userName",user.getPrenom());
             sessionMap.put("id",user.getId()); 
+//            userName="null";
+//            password="null";
+             
             return SUCCESS; // return welcome page
         }
+       
+        userName=null;
+        password=null;
          
         // in other cases, return login page
         return INPUT;
@@ -52,7 +62,9 @@ public class AuthenticationAction extends ActionSupport implements SessionAware 
     public String logout() {
     	
         // remove userName from the session
-        if (sessionMap.containsKey("userName")) {
+        if (sessionMap.containsKey("userName")) 
+        {
+        	sessionMap.remove("Name");
             sessionMap.remove("userName");
             sessionMap.remove("id");
         }
@@ -78,5 +90,31 @@ public class AuthenticationAction extends ActionSupport implements SessionAware 
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public void validate()
+	   {  
+		sessionMap.put("lastlogin",userName); 
+
+		  if(test==1){
+			 
+			  if (userName == null || userName.trim().equals(""))
+			   {
+			    addFieldError("userName","The name is required");
+			   }
+
+			   if (password == null || password.trim().equals(""))
+			   {
+		         addFieldError("password","The password is incorrect");
+		       }
+		  }
+	   }
+
+	public int getTest() {
+		return test;
+	}
+
+	public void setTest(int test) {
+		this.test = test;
 	}
 }
